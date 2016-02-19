@@ -11,7 +11,15 @@
         <module>edustats-service</module>
         <module>edustats-web</module>
     </modules>
-    
+
+    <properties>
+        <spring.version>4.2.2.RELEASE</spring.version>
+        <springframework.data.version>1.9.0.RELEASE</springframework.data.version>
+        <postgresql.version>9.4-1203-jdbc41</postgresql.version>
+        <hibernate.version>5.0.2.Final</hibernate.version>
+        <jackson.version>2.6.2</jackson.version>
+    </properties>
+
     <build>
         <pluginManagement>
             <plugins>
