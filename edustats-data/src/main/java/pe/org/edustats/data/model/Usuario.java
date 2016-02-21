@@ -58,7 +58,7 @@ public class Usuario implements Serializable {
    * 
    * @return contrasenia guardada
    */
-  @Column(name = "co_constrasenia")
+  @Column(name = "co_contrasenia")
   public String getCoContrasenia() {
     return coContrasenia;
   }

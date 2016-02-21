@@ -1,4 +1,4 @@
-package pe.org.edustats.web.config;
+package pe.org.edustats.service;
 
 import java.util.Properties;
 
@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaRepositories("pe.org.edustats.data.repository")
 @EnableTransactionManagement
-public class SpringJpaConfig {
+public class JpaTestConfig {
   @Value("${data.driver}")
   private String databaseDriver;
   @Value("${data.url}")

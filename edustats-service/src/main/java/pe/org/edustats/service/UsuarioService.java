@@ -1,6 +1,6 @@
 package pe.org.edustats.service;
 
-import pe.org.edustats.data.model.Usuario;
+import pe.org.edustats.data.bean.UsuarioBean;
 
 public interface UsuarioService {
 
@@ -9,5 +9,5 @@ public interface UsuarioService {
    * @param noCuenta del usuario
    * @return null si no encuestra, el usuario en otro caso
    */
-  public Usuario cargarUsuarioPorNoCuenta (String noCuenta);
+  public UsuarioBean cargarUsuarioPorNoCuenta (String noCuenta);
 }
