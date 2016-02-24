@@ -1,7 +1,9 @@
 package pe.org.edustats.web.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -20,6 +22,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @PropertySources(value = {@PropertySource("classpath:/app.properties"), @PropertySource(
     value = "file:${user.home}/properties/app-edustats.properties", ignoreResourceNotFound = true)})
+@ComponentScan(basePackages = {"pe.org.edustats.web.config", "pe.org.edustats.web.controller", "pe.org.edustats.service"})
+@Import({SpringJpaConfig.class})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
   @Override
