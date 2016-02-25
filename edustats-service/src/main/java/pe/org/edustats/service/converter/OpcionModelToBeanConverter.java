@@ -18,7 +18,7 @@ public class OpcionModelToBeanConverter extends AbstractDataConverter<Opcion, Op
     opcionBean.setCoOpcion(opcion.getCoOpcion());
     opcionBean.setDeRuta(opcion.getDeRuta());
     
-    return null;
+    return opcionBean;
   }
 
 }
