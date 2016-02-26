@@ -2,5 +2,5 @@ data.driver=org.postgresql.Driver
 
 data.url=jdbc:postgresql://localhost:5432/edustats
 data.username=postgres
-data.password=postgres
+data.password=
 data.dialect=org.hibernate.dialect.PostgreSQLDialect

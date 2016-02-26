@@ -1,1 +1,9 @@
 language: java
+services:
+  - postgres
+before_script:
+  - cp edustats-data/flyway.properties.sample edustats-data/flyway.properties
+  - cp edustats-service/src/test/java/test.properties.sample edustats-service/src/test/java/test.properties
+  - cd edustats-data
+  - mvn flayway:migrate
+  - cd ..
