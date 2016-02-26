@@ -5,5 +5,5 @@ before_install:
   - cp edustats-data/flyway.properties.sample edustats-data/flyway.properties
   - cp edustats-service/src/test/java/test.properties.sample edustats-service/src/test/java/test.properties
   - cd edustats-data
-  - mvn flayway:migrate
+  - mvn flyway:migrate
   - cd ..
