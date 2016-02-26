@@ -4,7 +4,7 @@ services:
 before_install:
   - psql -c 'create database edustats;' -U postgres
   - cp edustats-data/flyway.properties.sample edustats-data/flyway.properties
-  - cp edustats-service/src/test/java/test.properties.sample edustats-service/src/test/java/test.properties
+  - cp edustats-service/src/main/resources/test.properties.sample edustats-service/src/main/resources/test.properties
   - cd edustats-data
   - mvn flyway:migrate
   - cd ..
