@@ -30,10 +30,10 @@ public class Usuario implements Serializable {
   private String coContrasenia;
   private Persona persona;
   private List<Rol> roles = new ArrayList<>();
+  private List<InstitucionEducativa> institucionesEducativas = new ArrayList<>();
 
   @Id
-  @SequenceGenerator(name = "usuario_id_usuario_seq", sequenceName = "usuario_id_usuario_seq",
-      allocationSize = 1)
+  @SequenceGenerator(name = "usuario_id_usuario_seq", sequenceName = "usuario_id_usuario_seq", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "usuario_id_usuario_seq")
   @Column(name = "id_usuario")
   public Integer getIdUsuario() {
@@ -87,6 +87,18 @@ public class Usuario implements Serializable {
 
   public void setRoles(List<Rol> roles) {
     this.roles = roles;
+  }
+
+  @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinTable(name = "usuario_institucion_educativa",
+      joinColumns = {@JoinColumn(name = "id_usuario", nullable = false, updatable = false)},
+      inverseJoinColumns = {@JoinColumn(name = "id_institucion_educativa", nullable = false, updatable = false)})
+  public List<InstitucionEducativa> getInstitucionesEducativas() {
+    return institucionesEducativas;
+  }
+
+  public void setInstitucionesEducativas(List<InstitucionEducativa> institucionesEducativas) {
+    this.institucionesEducativas = institucionesEducativas;
   }
 
 }

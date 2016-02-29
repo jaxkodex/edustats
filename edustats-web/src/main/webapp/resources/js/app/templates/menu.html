@@ -24,7 +24,7 @@
 		<% if (menuItem.hijas.length > 0) { %>
 		<ul>
 		<% _.each(menuItem.hijas, function (v) { %>
-		<li><a href="#"><%=v.deOpcion%></a></li>
+		<li><a href="<%=v.deRuta%>"><%=v.deOpcion%></a></li>
 		<% }) %>
 		</ul>
 		<% } %>
