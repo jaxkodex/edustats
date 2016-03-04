@@ -2,6 +2,9 @@ define(['marionette', 'tpl!templates/top.html', 'jquery'], function (Marionette,
   return Marionette.ItemView.extend({
     className: 'col-sm-12',
     template: topTemplate,
+    templateHelpers: function () {
+    	return userData;
+    },
     events: {
       'click #menu-toggler': 'onClickMenuToggler'
     },

@@ -26,8 +26,7 @@ function (_, Backbone, Marionette, menuTemplate) {
     	});
     	_.each(menuMap, function (menuItem) {
     		menuArray.push(menuItem);
-    	})
-    	console.log(menuArray);
+    	});
     	return {
     		menuArray: menuArray
     	};
