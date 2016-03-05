@@ -9,4 +9,5 @@ import pe.org.edustats.data.model.InstitucionEducativa;
 public interface InstitucionEducativaRepository extends JpaRepository<InstitucionEducativa, Integer> {
 
   public List<InstitucionEducativa> findByUsuariosIdUsuario (Integer idUsuario);
+  public List<InstitucionEducativa> findByUsuariosNoCuenta (String noCuenta);
 }
