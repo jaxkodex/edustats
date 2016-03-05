@@ -1,16 +1,16 @@
 package pe.org.edustats.data.bean;
 
 public class InstitucionEducativaBean {
-  private Integer idIntitucionEducativa;
+  private Integer idInstitucionEducativa;
   private Integer nuInstitucionEducativa;
   private String noInstitucionEducativa;
 
-  public Integer getIdIntitucionEducativa() {
-    return idIntitucionEducativa;
+  public Integer getIdInstitucionEducativa() {
+    return idInstitucionEducativa;
   }
 
-  public void setIdIntitucionEducativa(Integer idIntitucionEducativa) {
-    this.idIntitucionEducativa = idIntitucionEducativa;
+  public void setIdIntitucionEducativa(Integer idInstitucionEducativa) {
+    this.idInstitucionEducativa = idInstitucionEducativa;
   }
 
   public Integer getNuInstitucionEducativa() {

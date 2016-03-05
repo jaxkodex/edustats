@@ -1,4 +1,6 @@
-*.properties
+app.properties
+test.properties
+flyway.properties
 target/
 
 *.class
