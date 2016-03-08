@@ -85,24 +85,26 @@ public class InstitucionEducativaServiceImpl implements InstitucionEducativaServ
     institucionEducativaRepository.save(ie);
     return converterToBean.convert(ie);
   }
-  
-  public InstitucionEducativaBean actualizar (InstitucionEducativaBean institucionEducativaBean, Integer idUsuario) {
+
+  @Override
+  @Transactional
+  public InstitucionEducativaBean actualizar (InstitucionEducativaBean institucionEducativaBean, Integer idUsuario) throws DataValidationException {
     DataValidator<InstitucionEducativaBean> beanValidator;
     InstitucionEducativaBeanToModelConverter converterToModel;
     InstitucionEducativaModelToBeanConverter converterToBean;
     InstitucionEducativa ie;
-    Usuario usuario;
+//    Usuario usuario;
     
-    usuario = usuarioRepository.findOne(idUsuario);
+//    usuario = usuarioRepository.findOne(idUsuario);
     
     beanValidator = new DataValidator<InstitucionEducativaBean>(institucionEducativaBean,
         new InstitucionEducativaBeanValidator(), messageSource);
+    beanValidator.validate();
 
     converterToModel = new InstitucionEducativaBeanToModelConverter();
     converterToBean = new InstitucionEducativaModelToBeanConverter();
 
     ie = converterToModel.convert(institucionEducativaBean);
-    usuario.getInstitucionesEducativas().add(ie);
 
     institucionEducativaRepository.save(ie);
     return converterToBean.convert(ie);

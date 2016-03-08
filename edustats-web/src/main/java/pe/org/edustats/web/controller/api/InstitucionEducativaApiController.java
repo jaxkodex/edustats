@@ -1,15 +1,20 @@
 package pe.org.edustats.web.controller.api;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import pe.org.edustats.data.bean.InstitucionEducativaBean;
@@ -43,9 +48,17 @@ public class InstitucionEducativaApiController {
     return institucionEducativaService.crear(institucionEducativaBean, usuario.getNoCuenta());
   }
   
-  @RequestMapping(value = "/api/ie", method = RequestMethod.PUT)
+  @RequestMapping(value = "/api/ie/{idInstitucionEducativa}", method = RequestMethod.PUT)
   public InstitucionEducativaBean actualizar (@RequestBody InstitucionEducativaBean institucionEducativaBean) throws ApplicationException, DataValidationException {
     UsuarioBean usuario = (UsuarioBean) session.getAttribute(SessionVariables.USUARIO_SESSION_VARIABLE);
     return institucionEducativaService.actualizar(institucionEducativaBean, usuario.getIdUsuario());
+  }
+  
+  @ExceptionHandler({DataValidationException.class})
+  @ResponseStatus(code=HttpStatus.UNPROCESSABLE_ENTITY)
+  public Map<String, Object> onDataValidationException (DataValidationException dataValidationErrorException) {
+      Map<String, Object> response = new HashMap<>();
+      response.put("errors", dataValidationErrorException.getErrors());
+      return response;
   }
 }

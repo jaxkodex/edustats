@@ -36,6 +36,7 @@ public class Persona implements Serializable {
     this.idPersona = idPersona;
   }
 
+  @Column(name = "no_persona")
   public String getNoPersona() {
     return noPersona;
   }
@@ -44,6 +45,7 @@ public class Persona implements Serializable {
     this.noPersona = noPersona;
   }
 
+  @Column(name = "ap_persona")
   public String getApPersona() {
     return apPersona;
   }
@@ -52,6 +54,7 @@ public class Persona implements Serializable {
     this.apPersona = apPersona;
   }
 
+  @Column(name = "am_persona")
   public String getAmPersona() {
     return amPersona;
   }
@@ -60,6 +63,7 @@ public class Persona implements Serializable {
     this.amPersona = amPersona;
   }
 
+  @Column(name = "fe_nacimiento")
   public Date getFeNacimiento() {
     return feNacimiento;
   }
