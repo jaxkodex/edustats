@@ -19,7 +19,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
   @Override
   @Transactional
-  public UsuarioBean cargarUsuarioPorNoCuenta(String noCuenta) {
+  public UsuarioBean cargarPorNoCuenta(String noCuenta) {
     List<Usuario> usuarios = usuarioRepository.findByNoCuenta(noCuenta);
     UsuarioBean usuarioBean = null;
     if (!usuarios.isEmpty()) {

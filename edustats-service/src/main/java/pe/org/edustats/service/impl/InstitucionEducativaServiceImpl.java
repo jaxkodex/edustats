@@ -49,6 +49,13 @@ public class InstitucionEducativaServiceImpl implements InstitucionEducativaServ
   }
 
   @Override
+  public InstitucionEducativaBean consultarPorId(Integer idInstitucionEducativa) {
+    InstitucionEducativaModelToBeanConverter converter;
+    converter = new InstitucionEducativaModelToBeanConverter();
+    return converter.convert(institucionEducativaRepository.findOne(idInstitucionEducativa));
+  }
+
+  @Override
   @Transactional
   public InstitucionEducativaBean crear(InstitucionEducativaBean institucionEducativaBean,
       String username) throws ApplicationException, DataValidationException {
@@ -68,6 +75,28 @@ public class InstitucionEducativaServiceImpl implements InstitucionEducativaServ
     beanValidator = new DataValidator<InstitucionEducativaBean>(institucionEducativaBean,
         new InstitucionEducativaBeanValidator(), messageSource);
     beanValidator.validate();
+
+    converterToModel = new InstitucionEducativaBeanToModelConverter();
+    converterToBean = new InstitucionEducativaModelToBeanConverter();
+
+    ie = converterToModel.convert(institucionEducativaBean);
+    usuario.getInstitucionesEducativas().add(ie);
+
+    institucionEducativaRepository.save(ie);
+    return converterToBean.convert(ie);
+  }
+  
+  public InstitucionEducativaBean actualizar (InstitucionEducativaBean institucionEducativaBean, Integer idUsuario) {
+    DataValidator<InstitucionEducativaBean> beanValidator;
+    InstitucionEducativaBeanToModelConverter converterToModel;
+    InstitucionEducativaModelToBeanConverter converterToBean;
+    InstitucionEducativa ie;
+    Usuario usuario;
+    
+    usuario = usuarioRepository.findOne(idUsuario);
+    
+    beanValidator = new DataValidator<InstitucionEducativaBean>(institucionEducativaBean,
+        new InstitucionEducativaBeanValidator(), messageSource);
 
     converterToModel = new InstitucionEducativaBeanToModelConverter();
     converterToBean = new InstitucionEducativaModelToBeanConverter();

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Simple Sidebar - Start Bootstrap Template</title>
+    <title>Edustats | Administración</title>
 
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/simple-sidebar.css" rel="stylesheet" />

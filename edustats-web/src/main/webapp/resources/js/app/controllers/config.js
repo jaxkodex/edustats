@@ -26,6 +26,9 @@ define([ 'app', 'underscore', 'views/InstitucionEducativaListView',
 					alert('go edit!');
 				}
 			});
+		},
+		newInstitucionEducativaForm: function () {
+			
 		}
 	};
 });

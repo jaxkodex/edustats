@@ -12,5 +12,9 @@ public interface InstitucionEducativaService {
   
   public List<InstitucionEducativaBean> consultaPorNoCuenta (String noCuenta);
   
+  public InstitucionEducativaBean consultarPorId (Integer idInstitucionEducativa);
+
   public InstitucionEducativaBean crear (InstitucionEducativaBean institucionEducativaBean, String username) throws ApplicationException, DataValidationException;
+  
+  public InstitucionEducativaBean actualizar (InstitucionEducativaBean institucionEducativaBean, Integer idUsuario) throws ApplicationException, DataValidationException;
 }

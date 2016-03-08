@@ -8,6 +8,13 @@ define(['marionette', 'tpl!templates/ielist.html', 'tpl!templates/ielistitem.htm
 	return Marionette.CompositeView.extend({
 		childView: ItemView,
 		template: IEListTemplate,
-		childViewContainer: 'tbody'
+		childViewContainer: 'tbody',
+		events: {
+			'click .new': 'gotoNewForm'
+		},
+		gotoNewForm: function (evt) {
+			evt.preventDefault();
+			this.trigger('goto:edit');
+		}
 	});
 });

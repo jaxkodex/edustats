@@ -9,5 +9,5 @@ public interface UsuarioService {
    * @param noCuenta del usuario
    * @return null si no encuestra, el usuario en otro caso
    */
-  public UsuarioBean cargarUsuarioPorNoCuenta (String noCuenta);
+  public UsuarioBean cargarPorNoCuenta (String noCuenta);
 }
