@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,6 +22,7 @@ public class InstitucionEducativa implements Serializable {
   private Integer nuInstitucionEducativa;
   private String noInstitucionEducativa;
   private List<Usuario> usuarios;
+  private List<PeriodoAcademico> periodoAcademicos;
 
   @Id
   @SequenceGenerator(name = "institucion_educativa_id_institucion_educativa_seq", sequenceName = "institucion_educativa_id_institucion_educativa_seq", allocationSize = 1)
@@ -59,5 +61,14 @@ public class InstitucionEducativa implements Serializable {
 
   public void setUsuarios(List<Usuario> usuarios) {
     this.usuarios = usuarios;
+  }
+
+  @OneToMany(mappedBy = "institucionEducativa")
+  public List<PeriodoAcademico> getPeriodoAcademicos() {
+    return periodoAcademicos;
+  }
+
+  public void setPeriodoAcademicos(List<PeriodoAcademico> periodoAcademicos) {
+    this.periodoAcademicos = periodoAcademicos;
   }
 }

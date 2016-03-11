@@ -24,6 +24,8 @@ insert into opcion (id_opcion, co_opcion, de_opcion, de_ruta, id_opcion_padre) v
 
 insert into opcion (id_opcion, co_opcion, de_opcion, de_ruta) values (3, 'CONF', 'Configuración', '#');
 insert into opcion (id_opcion, co_opcion, de_opcion, de_ruta, id_opcion_padre) values (4, 'CONFIE', 'Mis IEs', '#config/institucioneducativa/', 3);
+insert into opcion (id_opcion, co_opcion, de_opcion, de_ruta, id_opcion_padre) values (5, 'CONFPA', 'Periodo académico', '#config/periodoacademico/', 3);
 
 insert into rol_opcion (id_rol, id_opcion) values (1, 2);
 insert into rol_opcion (id_rol, id_opcion) values (1, 4);
+insert into rol_opcion (id_rol, id_opcion) values (1, 5);
