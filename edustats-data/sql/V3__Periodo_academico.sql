@@ -24,6 +24,7 @@ create table periodo_academico (
   co_periodo_academico char(6),
   fe_inicio timestamp with time zone,
   fe_fin timestamp with time zone,
+  fe_cierre timestamp with time zone,
   constraint periodo_academico_pk primary key (id_periodo_academico),
   constraint periodo_academico_institucion_educativa_fk foreign key (id_institucion_educativa) references institucion_educativa (id_institucion_educativa)
 );

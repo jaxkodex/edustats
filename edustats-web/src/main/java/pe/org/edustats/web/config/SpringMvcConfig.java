@@ -19,10 +19,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
-@EnableWebMvc
 @PropertySources(value = {@PropertySource("classpath:/app.properties"), @PropertySource(
     value = "file:${user.home}/properties/app-edustats.properties", ignoreResourceNotFound = true)})
+//@ComponentScan(basePackages = {"pe.org.edustats.web.config", "pe.org.edustats.service"})
 @ComponentScan(basePackages = {"pe.org.edustats.web.config", "pe.org.edustats.web.controller", "pe.org.edustats.service"})
+@EnableWebMvc
 @Import({SpringJpaConfig.class})
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 

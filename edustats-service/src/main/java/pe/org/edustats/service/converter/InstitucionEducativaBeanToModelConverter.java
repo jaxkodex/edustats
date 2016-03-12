@@ -12,7 +12,7 @@ public class InstitucionEducativaBeanToModelConverter extends AbstractDataConver
       return null;
     }
     InstitucionEducativa model = new InstitucionEducativa();
-    model.setIdIntitucionEducativa(ie.getIdInstitucionEducativa());
+    model.setIdInstitucionEducativa(ie.getIdInstitucionEducativa());
     model.setNoInstitucionEducativa(ie.getNoInstitucionEducativa());
     model.setNuInstitucionEducativa(ie.getNuInstitucionEducativa());
     return model;

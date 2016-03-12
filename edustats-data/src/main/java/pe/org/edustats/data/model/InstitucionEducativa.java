@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "institucion_educativa")
 public class InstitucionEducativa implements Serializable {
   private static final long serialVersionUID = 1L;
-  private Integer idIntitucionEducativa;
+  private Integer idInstitucionEducativa;
   private Integer nuInstitucionEducativa;
   private String noInstitucionEducativa;
   private List<Usuario> usuarios;
@@ -28,12 +28,12 @@ public class InstitucionEducativa implements Serializable {
   @SequenceGenerator(name = "institucion_educativa_id_institucion_educativa_seq", sequenceName = "institucion_educativa_id_institucion_educativa_seq", allocationSize = 1)
   @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "institucion_educativa_id_institucion_educativa_seq")
   @Column(name = "id_institucion_educativa")
-  public Integer getIdIntitucionEducativa() {
-    return idIntitucionEducativa;
+  public Integer getIdInstitucionEducativa() {
+    return idInstitucionEducativa;
   }
 
-  public void setIdIntitucionEducativa(Integer idIntitucionEducativa) {
-    this.idIntitucionEducativa = idIntitucionEducativa;
+  public void setIdInstitucionEducativa(Integer idInstitucionEducativa) {
+    this.idInstitucionEducativa = idInstitucionEducativa;
   }
 
   @Column(name = "nu_institucion_educativa")

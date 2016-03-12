@@ -72,9 +72,8 @@ public class InstitucionEducativaServiceImpl implements InstitucionEducativaServ
           new Object[] {}, LocaleContextHolder.getLocale()));
     }
     usuario = usuarios.get(0);
-    beanValidator = new DataValidator<InstitucionEducativaBean>(institucionEducativaBean,
-        new InstitucionEducativaBeanValidator(), messageSource);
-    beanValidator.validate();
+    beanValidator = new DataValidator<InstitucionEducativaBean>(new InstitucionEducativaBeanValidator(), messageSource);
+    beanValidator.validate(institucionEducativaBean);
 
     converterToModel = new InstitucionEducativaBeanToModelConverter();
     converterToBean = new InstitucionEducativaModelToBeanConverter();
@@ -97,9 +96,8 @@ public class InstitucionEducativaServiceImpl implements InstitucionEducativaServ
     
 //    usuario = usuarioRepository.findOne(idUsuario);
     
-    beanValidator = new DataValidator<InstitucionEducativaBean>(institucionEducativaBean,
-        new InstitucionEducativaBeanValidator(), messageSource);
-    beanValidator.validate();
+    beanValidator = new DataValidator<InstitucionEducativaBean>(new InstitucionEducativaBeanValidator(), messageSource);
+    beanValidator.validate(institucionEducativaBean);
 
     converterToModel = new InstitucionEducativaBeanToModelConverter();
     converterToBean = new InstitucionEducativaModelToBeanConverter();

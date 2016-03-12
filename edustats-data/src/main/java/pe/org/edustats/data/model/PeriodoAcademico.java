@@ -21,6 +21,7 @@ public class PeriodoAcademico implements Serializable {
   private String coPeriodoAcademico;
   private Date feInicio;
   private Date feFin;
+  private Date feCierre;
   
   private InstitucionEducativa institucionEducativa;
 
@@ -54,13 +55,22 @@ public class PeriodoAcademico implements Serializable {
     this.feInicio = feInicio;
   }
 
-  @Column(name = "fe_inicio")
+  @Column(name = "fe_fin")
   public Date getFeFin() {
     return feFin;
   }
 
   public void setFeFin(Date feFin) {
     this.feFin = feFin;
+  }
+
+  @Column(name = "fe_cierre")
+  public Date getFeCierre() {
+    return feCierre;
+  }
+
+  public void setFeCierre(Date feCierre) {
+    this.feCierre = feCierre;
   }
 
   @ManyToOne

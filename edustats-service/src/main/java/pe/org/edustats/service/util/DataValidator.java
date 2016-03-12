@@ -8,18 +8,16 @@ import org.springframework.validation.Validator;
 import pe.org.edustats.service.exception.DataValidationException;
 
 public class DataValidator<T> {
-  private T obj;
   private Validator validator;
   private MessageSource messageSource;
-
-  public DataValidator (T obj, Validator validator, MessageSource messageSource) {
-    this.obj = obj;
+  
+  public DataValidator (Validator validator, MessageSource messageSource) {
     this.validator = validator;
     this.messageSource = messageSource;
   }
   
-  public void validate () throws DataValidationException {
-    DataBinder binder = new DataBinder(obj);
+  public void validate (T target) throws DataValidationException {
+    DataBinder binder = new DataBinder(target);
     binder.setValidator(validator);
     binder.validate();
     BindingResult result = binder.getBindingResult();

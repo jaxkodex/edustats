@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,6 +33,7 @@ public class InstitucionEducativaApiController {
   private HttpSession session;
 
   @RequestMapping(value = "/api/ie", method = RequestMethod.GET)
+  @Secured("ROLE_LA_VIDA")
   public List<InstitucionEducativaBean> listAll (Principal principal) {
     String noCuenta = principal.getName();
     return institucionEducativaService.consultaPorNoCuenta(noCuenta);
@@ -54,11 +56,4 @@ public class InstitucionEducativaApiController {
     return institucionEducativaService.actualizar(institucionEducativaBean, usuario.getIdUsuario());
   }
   
-  @ExceptionHandler({DataValidationException.class})
-  @ResponseStatus(code=HttpStatus.UNPROCESSABLE_ENTITY)
-  public Map<String, Object> onDataValidationException (DataValidationException dataValidationErrorException) {
-      Map<String, Object> response = new HashMap<>();
-      response.put("errors", dataValidationErrorException.getErrors());
-      return response;
-  }
 }
