@@ -1,5 +1,5 @@
 define(['routers/index', 'controllers/index',
-        'routers/config', 'controllers/config'],
+        'routers/config', 'controllers/config', 'jquery'],
 function (IndexRouter, indexController,
 		ConfigRouter, configController) {
   return {
@@ -9,6 +9,12 @@ function (IndexRouter, indexController,
       });
       new ConfigRouter({
     	  controller: configController
+      });
+      
+      $(document).ajaxError(function (event, jqxhr, settings, thrownError) {
+    	  if (jqxhr.status == 403) {
+    		  alert("No tiene permiso para acceder a esta opción.");
+    	  }
       });
     }
   };

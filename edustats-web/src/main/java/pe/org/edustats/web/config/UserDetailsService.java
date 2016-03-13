@@ -53,7 +53,7 @@ public class UserDetailsService
         
         if (opcionMap.get(opcion.getIdOpcion()) == null) {
           opcionMap.put(opcion.getIdOpcion(), opcionConverter.convert(opcion));
-          GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(opcion.getCoOpcion());
+          GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(String.format("ROLE_%s", opcion.getCoOpcion()));
           authorities.add(grantedAuthority);
           LOGGER.trace(String.format("Dando permiso: %s", opcion.getCoOpcion()));
         }
