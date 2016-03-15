@@ -17,6 +17,7 @@ public class PeriodoAcademicoBeanValidator implements Validator {
   public void validate(Object target, Errors errors) {
     ValidationUtils.rejectIfEmpty(errors, "coPeriodoAcademico", "campo.requerido", new Object[] {"código"});
     ValidationUtils.rejectIfEmpty(errors, "feInicio", "campo.requerido", new Object[] {"fecha de inicio"});
+    ValidationUtils.rejectIfEmpty(errors, "institucionEducativa", "campo.requerido", new Object[] {"institucion educativa"});
   }
 
 }

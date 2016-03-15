@@ -17,27 +17,36 @@ require.config({
 		marionette : {
 			deps : [ 'jquery', 'underscore', 'backbone' ],
 			exports : 'Marionette'
+		},
+		jqueryui: {
+			deps: [ 'jquery' ]
 		}
 	},
 	paths : {
-		jquery : '../libs/jquery-1.12.0.min',
-		underscore : '../libs/underscore-min',
-		backbone : '../libs/backbone-min',
-		bootstrap : '../libs/bootstrap.min',
-		marionette : '../libs/backbone.marionette.min',
+		jquery : '../libs/jquery-1.12.0',
+		jqueryui : '../libs/jquery-ui',
+		underscore : '../libs/underscore',
+		backbone : '../libs/backbone',
+		bootstrap : '../libs/bootstrap',
+		marionette : '../libs/backbone.marionette',
 		tpl : '../libs/tpl',
-		metis: '../libs/metisMenu.min'
+		metis: '../libs/metisMenu',
+		moment: '../libs/moment-with-locales'
 	},
 	urlArgs : "bust=" + (new Date()).getTime()
 });
 
 require([ 'app', 'views/AppLayout', 'views/MenuView', 'views/TopView',
-'init', 'backbone', 'underscore', 'bootstrap', 'metis' ],
+'init', 'backbone', 'underscore', 'bootstrap', 'metis', 'jquery', 'jqueryui' ],
 function(app, AppLayout, MenuView, TopView, init, Backbone, _) {
 	app.on('start', function() {
 		app.rootView = new AppLayout;
 
 		init.initialize();
+		
+		app.ies = init.ies;
+		app.ieCollection = init.ieCollection;
+		app.currentIe = init.currentIe;
 
 		app.rootView.showChildView('menu', new MenuView);
 		app.rootView.showChildView('top', new TopView);
@@ -45,9 +54,9 @@ function(app, AppLayout, MenuView, TopView, init, Backbone, _) {
 		Backbone.history.start();
 	});
 	app.start();
-	 $(document).ajaxStart(function () {
-		 $('.loading-holder').stop().fadeIn(300);
-	 }).ajaxStop(function () {
-		 $('.loading-holder').stop().fadeOut(500);
-	 });
+	$(document).ajaxStart(function () {
+	  $('.loading-holder').stop().fadeIn(300);
+	}).ajaxStop(function () {
+	  $('.loading-holder').stop().fadeOut(500);
+	});
 });

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,13 +9,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Edustats | Administración</title>
+    <title>Edustats | AdministraciÃ³n</title>
 
     <link href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/jquery-ui.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/simple-sidebar.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/metisMenu.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet" />
+    
     <link href="${pageContext.request.contextPath}/resources/css/admin.css" rel="stylesheet" />
+    
     <link href="${pageContext.request.contextPath}/resources/css/spinkit.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/loading.css" rel="stylesheet">
     <!--[if lt IE 9]>
@@ -21,8 +26,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <script type="text/javascript">
-    var baseUrl = '${pageContext.request.contextPath}'
+    var baseUrl = '${pageContext.request.contextPath}';
     var userData = ${userData};
+    var ies = ${ies};
     </script>
 </head>
 
@@ -64,6 +70,11 @@
     <!-- /#wrapper -->
 
 
+	<c:if test="${not isJavascriptMinified}">
     <script data-main="${pageContext.request.contextPath}/resources/js/app/config" src="${pageContext.request.contextPath}/resources/js/libs/require.js"></script>
+    </c:if>
+    <c:if test="${isJavascriptMinified}">
+    <script data-main="${pageContext.request.contextPath}/resources/js/app.min.js" src="${pageContext.request.contextPath}/resources/js/libs/require.js"></script>
+    </c:if>
 </body>
 </html>

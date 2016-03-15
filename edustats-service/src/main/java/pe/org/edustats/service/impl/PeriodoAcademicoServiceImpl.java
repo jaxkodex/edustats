@@ -1,11 +1,13 @@
 package pe.org.edustats.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import pe.org.edustats.data.bean.InstitucionEducativaBean;
 import pe.org.edustats.data.bean.PeriodoAcademicoBean;
 import pe.org.edustats.data.model.InstitucionEducativa;
 import pe.org.edustats.data.model.PeriodoAcademico;
@@ -33,18 +35,34 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
   private MessageSource messageSource;
 
   @Override
-  public PeriodoAcademicoBean aperturarPeriodoAcademico(String coPeriodoAcademico, Date feInicio, Integer idInstitucionEducativa) throws ApplicationException, DataValidationException {
-    if (hayPeriodoAcademicoAperturado(idInstitucionEducativa)) {
-      String mensaje = messageResolver.getMessage(ServiceConstants.MC_EXISTE_PERIODO_ACADEMICO_APERTURADO);
-      throw new ApplicationException(mensaje);
-    }
+  public List<PeriodoAcademicoBean> consultaPorInstitucionEducativa(Integer idInstitucionEducativa) {
+    PeriodoAcademicoModelToBeanConverter paToBeanConverter;
+    paToBeanConverter = new PeriodoAcademicoModelToBeanConverter();
+    return paToBeanConverter.convertList(periodoAcademicoRepository.findByInstitucionEducativaIdInstitucionEducativa(idInstitucionEducativa));
+  }
+
+  @Override
+  public PeriodoAcademicoBean consultaPorId(Integer idPeriodoAcademico) {
+    PeriodoAcademicoModelToBeanConverter paToBeanConverter;
+    paToBeanConverter = new PeriodoAcademicoModelToBeanConverter();
+    return paToBeanConverter.convert(periodoAcademicoRepository.findOne(idPeriodoAcademico));
+  }
+
+  @Override
+  public PeriodoAcademicoBean aperturarPeriodoAcademico(String coPeriodoAcademico, Date feInicio, InstitucionEducativaBean institucionEducativaBean) throws ApplicationException, DataValidationException {
     
     PeriodoAcademicoBean periodoAcademicoBean = new PeriodoAcademicoBean();
     periodoAcademicoBean.setCoPeriodoAcademico(coPeriodoAcademico);
     periodoAcademicoBean.setFeInicio(feInicio);
+    periodoAcademicoBean.setInstitucionEducativa(institucionEducativaBean);
     
     DataValidator<PeriodoAcademicoBean> validator = new DataValidator<PeriodoAcademicoBean>(new PeriodoAcademicoBeanValidator(), messageSource);
     validator.validate(periodoAcademicoBean);
+    
+    if (hayPeriodoAcademicoAperturado(periodoAcademicoBean.getInstitucionEducativa().getIdInstitucionEducativa())) {
+      String mensaje = messageResolver.getMessage(ServiceConstants.MC_EXISTE_PERIODO_ACADEMICO_APERTURADO);
+      throw new ApplicationException(mensaje);
+    }
     
     PeriodoAcademicoModelToBeanConverter paToBeanConverter;
     PeriodoAcademicoBeanToModelConverter paToModelConverter;
@@ -53,7 +71,7 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
     paToBeanConverter = new PeriodoAcademicoModelToBeanConverter();
     
     PeriodoAcademico periodoAcademico = paToModelConverter.convert(periodoAcademicoBean);
-    InstitucionEducativa institucionEducativa = institucionEducativaRepository.findOne(idInstitucionEducativa);
+    InstitucionEducativa institucionEducativa = institucionEducativaRepository.findOne(institucionEducativaBean.getIdInstitucionEducativa());
     periodoAcademico.setInstitucionEducativa(institucionEducativa);
     
     periodoAcademico = periodoAcademicoRepository.save(periodoAcademico);

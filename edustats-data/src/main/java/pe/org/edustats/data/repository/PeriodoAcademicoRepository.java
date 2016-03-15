@@ -9,4 +9,6 @@ import pe.org.edustats.data.model.PeriodoAcademico;
 public interface PeriodoAcademicoRepository extends JpaRepository<PeriodoAcademico, Integer> {
 
   public List<PeriodoAcademico> findByInstitucionEducativaIdInstitucionEducativaAndFeFinIsNull(Integer idInstitucionEducativa);
+  
+  public List<PeriodoAcademico> findByInstitucionEducativaIdInstitucionEducativa(Integer idInstitucionEducativa);
 }

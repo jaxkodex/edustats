@@ -3,7 +3,10 @@ define(['marionette'], function(Marionette) {
 		appRoutes : {
 			'config/institucioneducativa/' : 'listInstitucionEducativa',
 			'config/institucioneducativa/new/' : 'newInstitucionEducativaForm',
-			'config/institucioneducativa/edit/:id' : 'editInstitucionEducativa'
+			'config/institucioneducativa/edit/:id' : 'editInstitucionEducativa',
+
+			'config/periodoacademico/': 'showPeriodoAcademicoListView',
+			'config/periodoacademico/new/': 'showPeriodoAcademicoNewFormView'
 		}
 	});
 });

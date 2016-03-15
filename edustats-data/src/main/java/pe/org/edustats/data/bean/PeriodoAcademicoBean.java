@@ -10,7 +10,7 @@ public class PeriodoAcademicoBean implements Serializable {
   private Date feInicio;
   private Date feFin;
   private Date feCierre;
-  private InstitucionEducativaBean institucionEducativaBean;
+  private InstitucionEducativaBean institucionEducativa;
 
   public Integer getIdPeriodoAcademico() {
     return idPeriodoAcademico;
@@ -52,12 +52,12 @@ public class PeriodoAcademicoBean implements Serializable {
     this.feCierre = feCierre;
   }
 
-  public InstitucionEducativaBean getInstitucionEducativaBean() {
-    return institucionEducativaBean;
+  public InstitucionEducativaBean getInstitucionEducativa() {
+    return institucionEducativa;
   }
 
-  public void setInstitucionEducativaBean(InstitucionEducativaBean institucionEducativaBean) {
-    this.institucionEducativaBean = institucionEducativaBean;
+  public void setInstitucionEducativa(InstitucionEducativaBean institucionEducativa) {
+    this.institucionEducativa = institucionEducativa;
   }
 
 }

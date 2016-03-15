@@ -1,10 +1,15 @@
 define([ 'app', 'underscore', 
          'views/InstitucionEducativaListView', 'views/InstitucionEducativaFormView',
-		'collections/InstitucionEducativa', 'models/InstitucionEducativa' ], function(
+         'views/config/PeriodoAcademicoListView', 'views/config/PeriodoAcademicoFormView',
+		'collections/InstitucionEducativa', 'models/InstitucionEducativa',
+		'models/PeriodoAcademico', 'collections/PeriodoAcademicoCollection'], function(
 				app, _, InstitucionEducativaListView,
-				InstitucionEducativaFormView,
-				InstitucionEducativaCollection, InstitucionEducativa) {
+				InstitucionEducativaFormView, 
+				PeriodoAcademicoListView, PeriodoAcademicoFormView,
+				InstitucionEducativaCollection, InstitucionEducativa,
+				PeriodoAcademico, PeriodoAcademicoCollection) {
 	var institucionEducativaCollection = new InstitucionEducativaCollection([]);
+	var periodoAcademicoCollection = new PeriodoAcademicoCollection([]);
 	return {
 		listInstitucionEducativa : function() {
 			var view, me;
@@ -70,6 +75,70 @@ define([ 'app', 'underscore',
 			view.on('goto:edit', function (id) {
 				me.editInstitucionEducativa(id);
 				Backbone.history.navigate('config/institucioneducativa/edit/'+id);
+			});
+		},
+		
+		showPeriodoAcademicoListView: function () {
+			var me, view;
+			me = this;
+			view = new PeriodoAcademicoListView({
+				collection: periodoAcademicoCollection
+			});
+			periodoAcademicoCollection.fetch({
+				data: {
+					idInstitucionEducativa: app.currentIe.idInstitucionEducativa
+				},
+				success: function () {
+					if (periodoAcademicoCollection.isEmpty()) {
+						me.showPeriodoAcademicoNewFormView();
+						Backbone.history.navigate('config/periodoacademico/new/');
+					} else {
+						app.rootView.showChildView('main', view);
+					}
+				}
+			});
+			
+			view.on('goto:edit', function (id) {
+				me.showPeriodoAcademicoEditFormView(id);
+				Backbone.history.navigate('config/periodoacademico/edit/'+id);
+			});
+		},
+		showPeriodoAcademicoNewFormView: function () {
+			var model, me, view;
+			me = this;
+			model = new PeriodoAcademico();
+			periodoAcademicoCollection.add(model);
+			view = new PeriodoAcademicoFormView({
+				model: model
+			});
+			app.rootView.showChildView('main', view);
+			
+			view.on('goto:edit', function (id) {
+				me.showPeriodoAcademicoEditFormView(id);
+				Backbone.history.navigate('config/periodoacademico/edit/'+id);
+			});
+			
+			view.on('goto:list', function () {
+				me.showPeriodoAcademicoListView();
+				Backbone.history.navigate('config/periodoacademico/');
+			});
+		},
+		showPeriodoAcademicoEditFormView: function (id) {
+			var model, me, view;
+			me = this;
+			model = periodoAcademicoCollection.get(id);
+			if  (_.isUndefined(model)) {
+				model = new PeriodoAcademico();
+				periodoAcademicoCollection.add(model);
+			}
+			view = new PeriodoAcademicoFormView({
+				model: model
+			});
+			app.rootView.showChildView('main', view);
+			
+			view.on('goto:list', function () {
+				me.showPeriodoAcademicoListView();
+				Backbone.history.navigate('config/periodoacademico/');
 			});
 		}
 	};
