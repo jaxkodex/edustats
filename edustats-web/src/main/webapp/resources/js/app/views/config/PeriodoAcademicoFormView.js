@@ -24,7 +24,6 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoform.html', '
 					feInicio: moment(this.$('input[name=feInicio]').val(), 'DD/MM/YYYY').toDate().getTime(),
 					institucionEducativa: app.currentIe
 			};
-			console.log(obj);
 			this.model.save(obj, {
 				success: function () {
 					if (isNew) {

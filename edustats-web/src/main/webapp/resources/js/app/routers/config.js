@@ -6,7 +6,10 @@ define(['marionette'], function(Marionette) {
 			'config/institucioneducativa/edit/:id' : 'editInstitucionEducativa',
 
 			'config/periodoacademico/': 'showPeriodoAcademicoListView',
-			'config/periodoacademico/new/': 'showPeriodoAcademicoNewFormView'
+			'config/periodoacademico/new/': 'showPeriodoAcademicoNewFormView',
+			'config/periodoacademico/edit/:idPeriodoAcademico': 'showPeriodoAcademicoEditFormView',
+			
+			'config/periodoacademico/edit/:idPeriodoAcademico/docente/new': 'showPeriodoAcademicoDocenteNewFormView'
 		}
 	});
 });

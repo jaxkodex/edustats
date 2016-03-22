@@ -1,10 +1,24 @@
+create table tipo_documento (
+  id_tipo_documento char (2) not null,
+  de_corta varchar (15) not null,
+  de_larga varchar (50) not null,
+  constraint tipo_documento_pk primary key (id_tipo_documento)
+);
+
 create table persona (
   id_persona serial not null,
   no_persona varchar(100),
   ap_persona varchar(100),
   am_persona varchar(100),
   fe_nacimiento date,
-  constraint persona_pk primary key (id_persona)
+  nu_documento character varying(15),
+  de_genero character varying(1),
+  de_telefono character varying(15),
+  de_correo character varying(100),
+  de_direccion varchar (100),
+  id_tipo_documento char(2) not null,
+  constraint persona_pk primary key (id_persona),
+  constraint persona_tipo_documento foreign key (id_tipo_documento) references tipo_documento (id_tipo_documento)
 );
 
 CREATE TABLE usuario (
@@ -12,7 +26,7 @@ CREATE TABLE usuario (
   id_persona int,
   no_cuenta varchar(30),
   co_contrasenia varchar(32),
-  CONSTRAINT usuario_pk PRIMARY KEY (id_usuario),
+  constraint usuario_pk PRIMARY KEY (id_usuario),
   constraint persona_fk foreign key (id_persona) references persona(id_persona),
   constraint no_cuenta_unique unique (no_cuenta)
 );
@@ -34,5 +48,3 @@ CREATE TABLE usuario_rol (
       ON UPDATE NO ACTION ON DELETE NO ACTION,
   CONSTRAINT usuario_rol_pk PRIMARY KEY (id_usuario, id_rol)
 );
-
-INSERT INTO usuario (id_usuario, no_cuenta, co_contrasenia) VALUES (1, 'demo', md5('demo'));

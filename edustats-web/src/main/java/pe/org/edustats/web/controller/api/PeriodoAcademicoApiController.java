@@ -29,7 +29,7 @@ public class PeriodoAcademicoApiController {
     return new ResponseEntity<List<PeriodoAcademicoBean>>(data, HttpStatus.OK);
   }
   
-  @RequestMapping(value = "/api/periodoAcademico/{idInstitucionEducativa}", method = RequestMethod.GET)
+  @RequestMapping(value = "/api/periodoAcademico/{idPeriodoAcademico}", method = RequestMethod.GET)
   public ResponseEntity<PeriodoAcademicoBean> consultaPorId (@PathVariable Integer idPeriodoAcademico) {
     PeriodoAcademicoBean periodoAcademicoBean = periodoAcademicoService.consultaPorId(idPeriodoAcademico);
     return new ResponseEntity<PeriodoAcademicoBean>(periodoAcademicoBean, HttpStatus.OK);

@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 /**
@@ -23,6 +25,8 @@ public class Persona implements Serializable {
   private String apPersona;
   private String amPersona;
   private Date feNacimiento;
+  
+  private TipoDocumento tipoDocumento;
 
   @Id
   @SequenceGenerator(name="persona_id_persona_seq", sequenceName="persona_id_persona_seq", allocationSize=1)
@@ -70,5 +74,15 @@ public class Persona implements Serializable {
 
   public void setFeNacimiento(Date feNacimiento) {
     this.feNacimiento = feNacimiento;
+  }
+
+  @ManyToOne
+  @JoinColumn(name = "id_tipo_documento")
+  public TipoDocumento getTipoDocumento() {
+    return tipoDocumento;
+  }
+
+  public void setTipoDocumento(TipoDocumento tipoDocumento) {
+    this.tipoDocumento = tipoDocumento;
   }
 }

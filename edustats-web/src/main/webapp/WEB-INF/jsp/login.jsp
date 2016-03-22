@@ -19,8 +19,11 @@
 <body>
 
 <div class="container">
-	<div class="col-sm-4 col-sm-offset-4">
+	<div class="col-sm-6 col-sm-offset-3">
 		<div class="login-box">
+			<div class="text-center">
+				<h1>Edustats</h1>
+			</div>
 			<c:if test="${param.error != null}">
 			<div class="alert alert-danger">
 				<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

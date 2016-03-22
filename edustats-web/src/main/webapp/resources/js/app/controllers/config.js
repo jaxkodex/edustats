@@ -1,15 +1,21 @@
 define([ 'app', 'underscore', 
          'views/InstitucionEducativaListView', 'views/InstitucionEducativaFormView',
          'views/config/PeriodoAcademicoListView', 'views/config/PeriodoAcademicoFormView',
+         'views/config/DocenteFormView',
 		'collections/InstitucionEducativa', 'models/InstitucionEducativa',
-		'models/PeriodoAcademico', 'collections/PeriodoAcademicoCollection'], function(
+		'models/PeriodoAcademico', 'collections/PeriodoAcademicoCollection',
+		'models/Trabajador', 'collections/TrabajadorCollection'], function(
 				app, _, InstitucionEducativaListView,
 				InstitucionEducativaFormView, 
 				PeriodoAcademicoListView, PeriodoAcademicoFormView,
+				DocenteFormView,
 				InstitucionEducativaCollection, InstitucionEducativa,
-				PeriodoAcademico, PeriodoAcademicoCollection) {
+				PeriodoAcademico, PeriodoAcademicoCollection, 
+				Trabajador, TrabajadorCollection) {
 	var institucionEducativaCollection = new InstitucionEducativaCollection([]);
 	var periodoAcademicoCollection = new PeriodoAcademicoCollection([]);
+	var trabajadorCollection = new TrabajadorCollection([]);
+	
 	return {
 		listInstitucionEducativa : function() {
 			var view, me;
@@ -128,18 +134,34 @@ define([ 'app', 'underscore',
 			me = this;
 			model = periodoAcademicoCollection.get(id);
 			if  (_.isUndefined(model)) {
-				model = new PeriodoAcademico();
+				model = new PeriodoAcademico({
+					idPeriodoAcademico: id
+				});
 				periodoAcademicoCollection.add(model);
 			}
 			view = new PeriodoAcademicoFormView({
 				model: model
 			});
-			app.rootView.showChildView('main', view);
+			model.fetch({
+				success: function () {
+					app.rootView.showChildView('main', view);
+				}
+			});
 			
 			view.on('goto:list', function () {
 				me.showPeriodoAcademicoListView();
 				Backbone.history.navigate('config/periodoacademico/');
 			});
+		},
+		
+		showPeriodoAcademicoDocenteNewFormView: function (idPeriodoAcademico) {
+			var me, view;
+			me = this;
+			view = new DocenteFormView({
+				model: new Trabajador,
+				idPeriodoAcademico: idPeriodoAcademico
+			});
+			app.rootView.showChildView('main', view);
 		}
 	};
 });

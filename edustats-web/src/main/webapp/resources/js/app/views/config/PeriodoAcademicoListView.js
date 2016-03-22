@@ -10,7 +10,7 @@ define(['marionette', 'tpl!templates/config/periodoacademicolist.html',
 			}
 		},
 		events: {
-			'click .link-edit': 'gotoEdit'
+			'click .btn-edit': 'gotoEdit'
 		},
 		gotoEdit: function (evt) {
 			evt.preventDefault();

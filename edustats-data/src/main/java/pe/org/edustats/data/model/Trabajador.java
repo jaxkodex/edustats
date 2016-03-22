@@ -18,6 +18,8 @@ public class Trabajador implements Serializable {
   private static final long serialVersionUID = 1L;
   private Integer idTrabajador;
   private Cargo cargo;
+  
+  private Persona persona;
 
   @Id
   @SequenceGenerator(name="trabajador_id_trabajador_seq", sequenceName="trabajador_id_trabajador_seq", allocationSize=1)
@@ -39,6 +41,16 @@ public class Trabajador implements Serializable {
 
   public void setCargo(Cargo cargo) {
     this.cargo = cargo;
+  }
+
+  @ManyToOne
+  @JoinColumn(name = "id_persona")
+  public Persona getPersona() {
+    return persona;
+  }
+
+  public void setPersona(Persona persona) {
+    this.persona = persona;
   }
 
 }

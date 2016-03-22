@@ -6,9 +6,11 @@ create table cargo (
 
 create table trabajador (
   id_trabajador serial not null,
-  co_cargo char(2),
+  co_cargo char(2) not null,
+  id_persona int not null,
   constraint trabajador_pk primary key (id_trabajador),
-  constraint trabajador_cargo_fk foreign key (co_cargo) references cargo (co_cargo)
+  constraint trabajador_cargo_fk foreign key (co_cargo) references cargo (co_cargo),
+  constraint trabajador_persona_fk foreign key (id_persona) references persona (id_persona)
 );
 
 create table institucion_educativa (
