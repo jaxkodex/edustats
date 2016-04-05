@@ -1,4 +1,4 @@
-package pe.org.edustats.service.converter.tomodel;
+package pe.org.edustats.service.converter;
 
 import org.springframework.stereotype.Component;
 

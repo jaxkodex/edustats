@@ -34,7 +34,7 @@ public class Trabajador implements Serializable {
   }
 
   @ManyToOne
-  @JoinColumn(name = "id_cargo")
+  @JoinColumn(name = "co_cargo")
   public Cargo getCargo() {
     return cargo;
   }

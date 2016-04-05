@@ -1,32 +1,20 @@
-<h4>Periodo académico</h4>
-<div class="row">
-	<div class="col-sm-12">
-		<form class="form-horizontal">
-			<div class="form-group">
-				<label class="control-label col-sm-2">Código</label>
-				<div class="col-sm-4">
-					<input type="text" name="coPeriodoAcademico" class="form-control input-sm" value="<%=coPeriodoAcademico%>" placeholder="Ej. <%=moment().format('YYYY')%>" />
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2">Fecha de Inicio</label>
-				<div class="col-sm-4">
-					<div class="input-group">
-						<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-						<input type="text" name="feInicio" class="form-control input-sm date" value="<%=moment(feInicio).format('DD/MM/YYYY')%>" placeholder="Ej. <%=moment().format('DD/MM/YYYY')%>" />
-					</div>
-				</div>
-			</div>
-			<% if (!isNew) { %>
-			<div class="row" style="padding: 20px 0px;">
-				<div class="col-sm-12">
-					<h4>Plana docente</h4>
-					<button type="button" class="btn btn-sm btn-link"><span class="glyphicon glyphicon-plus"></span> Registrar docente</button>
-				</div>
-			</div>
-			<% } %>
-			<button type="button" class="btn btn-sm btn-primary btn-save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
-			<button type="button" class="btn btn-sm btn-default btn-cancel" style="margin-left: 10px;"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-		</form>
+
+<form class="form-horizontal">
+	<div class="form-group">
+		<label class="control-label col-sm-2">Código</label>
+		<div class="col-sm-4">
+			<input type="text" name="coPeriodoAcademico" class="form-control input-sm" value="<%=coPeriodoAcademico%>" placeholder="Ej. <%=moment().format('YYYY')%>" />
+		</div>
 	</div>
-</div>
+	<div class="form-group">
+		<label class="control-label col-sm-2">Fecha de Inicio</label>
+		<div class="col-sm-4">
+			<div class="input-group">
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+				<input type="text" name="feInicio" class="form-control input-sm date" value="<%=moment(feInicio).format('DD/MM/YYYY')%>" placeholder="Ej. <%=moment().format('DD/MM/YYYY')%>" />
+			</div>
+		</div>
+	</div>
+	<button type="button" class="btn btn-sm btn-primary btn-save"><span class="glyphicon glyphicon-floppy-disk"></span> Guardar</button>
+	<button type="button" class="btn btn-sm btn-default btn-cancel" style="margin-left: 10px;"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+</form>

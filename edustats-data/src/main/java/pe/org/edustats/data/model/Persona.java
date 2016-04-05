@@ -25,6 +25,7 @@ public class Persona implements Serializable {
   private String apPersona;
   private String amPersona;
   private Date feNacimiento;
+  private String nuDocumento;
   
   private TipoDocumento tipoDocumento;
 
@@ -74,6 +75,15 @@ public class Persona implements Serializable {
 
   public void setFeNacimiento(Date feNacimiento) {
     this.feNacimiento = feNacimiento;
+  }
+
+  @Column(name = "nu_documento")
+  public String getNuDocumento() {
+    return nuDocumento;
+  }
+
+  public void setNuDocumento(String nuDocumento) {
+    this.nuDocumento = nuDocumento;
   }
 
   @ManyToOne

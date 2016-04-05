@@ -3,8 +3,8 @@ insert into tipo_documento (id_tipo_documento, de_corta, de_larga) values ('01',
 
 -- Registro de persona
 
-insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento) values (1, 'Pedro', 'Castillo', 'Izaguirre', '1990-01-25', '01');
-insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento) values (2, 'Jesús', 'Alvarado', 'Cotillo', '1990-01-01', '01');
+insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento, nu_documento) values (1, 'Pedro', 'Castillo', 'Izaguirre', '1990-01-25', '01', '11111111');
+insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento, nu_documento) values (2, 'Jesús', 'Alvarado', 'Cotillo', '1990-01-01', '01', '22222222');
 
 alter sequence persona_id_persona_seq restart with 3;
 

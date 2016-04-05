@@ -13,11 +13,12 @@
     </modules>
 
     <properties>
-        <spring.version>4.2.2.RELEASE</spring.version>
-        <springframework.data.version>1.9.0.RELEASE</springframework.data.version>
+        <spring.version>4.2.5.RELEASE</spring.version>
+        <spring.security>4.0.4.RELEASE</spring.security>
+        <spring.data>1.9.4.RELEASE</spring.data>
         <postgresql.version>9.4-1203-jdbc41</postgresql.version>
         <hibernate.version>5.0.2.Final</hibernate.version>
-        <jackson.version>2.6.2</jackson.version>
+        <jackson.version>2.7.3</jackson.version>
     </properties>
 
     <build>

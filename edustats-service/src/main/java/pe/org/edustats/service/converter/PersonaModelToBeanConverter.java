@@ -17,6 +17,7 @@ public class PersonaModelToBeanConverter extends AbstractDataConverter<Persona, 
     personaBean.setFeNacimiento(persona.getFeNacimiento());
     personaBean.setIdPersona(persona.getIdPersona());
     personaBean.setNoPersona(persona.getNoPersona());
+    personaBean.setNuDocumento(persona.getNuDocumento());
     return personaBean;
   }
 
