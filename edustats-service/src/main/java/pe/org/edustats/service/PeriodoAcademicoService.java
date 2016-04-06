@@ -32,7 +32,7 @@ public interface PeriodoAcademicoService {
      * @param trabajadorBean trabajador que es agregado a la plana
      * @throws DataValidationException cuando se requiere registrar el docente pero no se puede
      */
-    void addDocenteAPlanaPeriodo (Integer idPeriodoAcademico, TrabajadorBean trabajadorBean) throws DataValidationException;
+    PlanillaBean addDocenteAPlanaPeriodo (Integer idPeriodoAcademico, TrabajadorBean trabajadorBean) throws DataValidationException;
 
     /**
      * Carga la planilla de una institucion educativa para un periodo academico

@@ -40,7 +40,6 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                            success: function () {
                                if (isNew) {
                                    me.triggerMethod('goto:edit', me.model.id);
-                                   // me.trigger('goto:edit', me.model.id)
                                }
                            }
                        });
@@ -64,6 +63,7 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                            moment: moment
                        };
                    },
+                   className: 'periodo-academico-docente',
                    events: function () {
                        var evtHash = {
                            'click .btn-save': 'onClickBtnSave'
@@ -72,7 +72,16 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                        return evtHash;
                    },
                    onRender: function () {
-                       this.$('.date').datepicker();
+                       this.$('.date').datepicker(
+                           {
+                               maxDate: new Date(),
+                               changeMonth: true,
+                               changeYear: true
+                           }
+                       );
+                       if (this.model.isNew()) {
+                           this.$el.addClass('in-action-edit');
+                       }
                    },
                    onChangeNuDocumento: function () {
                        var me = this;

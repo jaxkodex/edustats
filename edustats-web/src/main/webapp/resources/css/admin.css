@@ -91,3 +91,11 @@ li.sidebar-brand a {
   padding-top: 14px;
   padding-bottom: 10px;
 }
+
+.editing {
+  display: none;
+}
+
+.in-action-edit .editing {
+  display: table-row;
+}

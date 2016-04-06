@@ -1,0 +1,9 @@
+div.periodo-academico-docente {
+    padding: 15px 20px;
+    background-color: #fff;
+    border-left: solid 3px #8c8c8c;
+}
+
+div.periodo-academico-docente:nth-child(odd) {
+    border-left: solid 3px silver;
+}

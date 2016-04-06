@@ -102,7 +102,7 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
     }
 
     @Override
-    public void addDocenteAPlanaPeriodo(Integer idPeriodoAcademico, TrabajadorBean trabajadorBean) throws DataValidationException {
+    public PlanillaBean addDocenteAPlanaPeriodo(Integer idPeriodoAcademico, TrabajadorBean trabajadorBean) throws DataValidationException {
         List<Trabajador> trabajadores;
         String nuDocumento = trabajadorBean.getPersona().getNuDocumento();
         String idTipoDocumento = trabajadorBean.getPersona().getTipoDocumento().getIdTipoDocumento();
@@ -119,6 +119,11 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
         planilla.setIdPeriodoAcademico(idPeriodoAcademico);
 
         planillaRepository.save(planilla);
+
+        PlanillaBean planillaBean = new PlanillaBean();
+        planillaBean.setIdPeriodoAcademico(idPeriodoAcademico);
+        planillaBean.setTrabajador(trabajadorBean);
+        return planillaBean;
     }
 
     @Override

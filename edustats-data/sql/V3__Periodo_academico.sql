@@ -32,11 +32,13 @@ create table periodo_academico (
 );
 
 create table planilla (
+  id_planilla serial not null,
   id_periodo_academico int,
   id_trabajador int,
-  constraint planilla_pk primary key (id_periodo_academico, id_trabajador),
+  constraint planilla_pk primary key (id_planilla),
   constraint planilla_trabajador_fk foreign key (id_trabajador) references trabajador (id_trabajador),
-  constraint planilla_periodo_academico_fk foreign key (id_periodo_academico) references periodo_academico (id_periodo_academico)
+  constraint planilla_periodo_academico_fk foreign key (id_periodo_academico) references periodo_academico (id_periodo_academico),
+  constraint planilla_trabajador_periodo_uniq unique (id_periodo_academico, id_trabajador)
 );
 
 create table usuario_institucion_educativa (

@@ -16,8 +16,9 @@
     <link href="${pageContext.request.contextPath}/resources/css/simple-sidebar.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/metisMenu.min.css" rel="stylesheet" />
     <link href="${pageContext.request.contextPath}/resources/css/font-awesome.min.css" rel="stylesheet" />
-    
+
     <link href="${pageContext.request.contextPath}/resources/css/admin.css" rel="stylesheet" />
+    <link href="${pageContext.request.contextPath}/resources/css/edustats.css" rel="stylesheet" />
     
     <link href="${pageContext.request.contextPath}/resources/css/spinkit.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/resources/css/loading.css" rel="stylesheet">
