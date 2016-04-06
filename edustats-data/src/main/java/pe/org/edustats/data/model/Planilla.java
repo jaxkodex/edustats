@@ -12,9 +12,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "planilla")
+@Table(name = "planilla", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"id_periodo_academico", "id_trabajador"})
+})
 public class Planilla implements Serializable {
     private static final long serialVersionUID = 1L;
     private Integer idPlanilla;
