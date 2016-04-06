@@ -19,7 +19,7 @@ public class UsuarioServiceTest {
 
   @Test
   public void cargarUsuarioPorNoCuentaTest() {
-    UsuarioBean usuarioBean = usuarioService.cargarPorNoCuenta("demo");
+    UsuarioBean usuarioBean = usuarioService.cargarPorNoCuenta("pcastillo");
     Assert.assertNotNull(usuarioBean);
   }
 

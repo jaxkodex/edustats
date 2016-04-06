@@ -46,6 +46,8 @@ alter sequence trabajador_id_trabajador_seq restart with 3;
 -- Institución educativa
 insert into institucion_educativa (id_institucion_educativa, nu_institucion_educativa, no_institucion_educativa) values (1, 170, 'I.E. Santa Rosa del Sauce');
 
+alter sequence institucion_educativa_id_institucion_educativa_seq restart with 2;
+
 -- Asignación de usuario a institución educativa
 insert into usuario_institucion_educativa (id_usuario, id_institucion_educativa) values (1, 1);
 insert into usuario_institucion_educativa (id_usuario, id_institucion_educativa) values (2, 1);

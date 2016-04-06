@@ -72,7 +72,7 @@ public class InstitucionEducativaServiceImpl implements InstitucionEducativaServ
           new Object[] {}, LocaleContextHolder.getLocale()));
     }
     usuario = usuarios.get(0);
-    beanValidator = new DataValidator<InstitucionEducativaBean>(new InstitucionEducativaBeanValidator(), messageSource);
+    beanValidator = new DataValidator<>(new InstitucionEducativaBeanValidator(), messageSource);
     beanValidator.validate(institucionEducativaBean);
 
     converterToModel = new InstitucionEducativaBeanToModelConverter();

@@ -36,7 +36,7 @@ public class InstitucionServiceTest {
      thrown.expect(DataValidationException.class);
      System.out.println(institucionEducativaService);
      
-     institucionEducativaService.crear(ie, "demo");
+     institucionEducativaService.crear(ie, "pcastillo");
    }
    
    @Test
@@ -45,7 +45,7 @@ public class InstitucionServiceTest {
      ie.setNoInstitucionEducativa("Santa Rosa del Sauce");
      ie.setNuInstitucionEducativa(170);
      
-     InstitucionEducativaBean result = institucionEducativaService.crear(ie, "demo");
+     InstitucionEducativaBean result = institucionEducativaService.crear(ie, "pcastillo");
      
      Assert.assertNotNull(result.getIdInstitucionEducativa());
    }
