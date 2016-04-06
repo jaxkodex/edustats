@@ -115,15 +115,14 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
         Integer idTrabajador = trabajadorBean.getIdTrabajador();
 
         Planilla planilla = new Planilla();
-        planilla.setIdTrabajador(idTrabajador);
-        planilla.setIdPeriodoAcademico(idPeriodoAcademico);
+        planilla.setTrabajador(new Trabajador());
+        planilla.getTrabajador().setIdTrabajador(idTrabajador);
+        planilla.setPeriodoAcademico(new PeriodoAcademico());
+        planilla.getPeriodoAcademico().setIdPeriodoAcademico(idPeriodoAcademico);
 
-        planillaRepository.save(planilla);
+        planilla = planillaRepository.save(planilla);
 
-        PlanillaBean planillaBean = new PlanillaBean();
-        planillaBean.setIdPeriodoAcademico(idPeriodoAcademico);
-        planillaBean.setTrabajador(trabajadorBean);
-        return planillaBean;
+        return new PlanillaModelToBeanConverter().convert(planilla);
     }
 
     @Override

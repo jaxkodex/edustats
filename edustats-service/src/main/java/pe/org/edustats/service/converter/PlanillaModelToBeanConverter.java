@@ -15,7 +15,8 @@ public class PlanillaModelToBeanConverter extends AbstractDataConverter<Planilla
         }
         TrabajadorModelToBeanConverter tModelToBean = new TrabajadorModelToBeanConverter();
         PlanillaBean planillaBean = new PlanillaBean();
-        planillaBean.setIdPeriodoAcademico(planilla.getIdPeriodoAcademico());
+        planillaBean.setIdPlanilla(planilla.getIdPlanilla());
+        planillaBean.setIdPeriodoAcademico(planilla.getPeriodoAcademico().getIdPeriodoAcademico());
         planillaBean.setTrabajador(tModelToBean.convert(planilla.getTrabajador()));
         return planillaBean;
     }
