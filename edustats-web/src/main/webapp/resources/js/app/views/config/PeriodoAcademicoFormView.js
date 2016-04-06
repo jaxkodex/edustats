@@ -39,7 +39,8 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                        this.model.save(obj, {
                            success: function () {
                                if (isNew) {
-                                   me.trigger('goto:edit', me.model.id)
+                                   me.triggerMethod('goto:edit', me.model.id);
+                                   // me.trigger('goto:edit', me.model.id)
                                }
                            }
                        });
@@ -59,13 +60,19 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                    templateHelpers: function () {
                        console.log(this.model.cid);
                        return {
-                           cid: this.model.cid
+                           cid: this.model.cid,
+                           moment: moment
                        };
                    },
                    events: function () {
-                       var evtHash = {};
+                       var evtHash = {
+                           'click .btn-save': 'onClickBtnSave'
+                       };
                        evtHash['change #nuDocumento-'+this.model.cid] = 'onChangeNuDocumento';
                        return evtHash;
+                   },
+                   onRender: function () {
+                       this.$('.date').datepicker();
                    },
                    onChangeNuDocumento: function () {
                        var me = this;
@@ -74,7 +81,8 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                                reset: true,
                                data: {
                                    by: 'nuDocumento',
-                                   nuDocumento: this.$('#nuDocumento-'+this.model.cid).val()
+                                   nuDocumento: this.$('#nuDocumento-'+this.model.cid).val(),
+                                   idTipoDocumento: this.$('#coTipoDocumento-'+this.model.cid).val()
                                },
                                success: function (collection, response, options) {
                                    if (collection.isEmpty()) {
@@ -83,7 +91,27 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                                    me.model.set('trabajador', collection.at(0).toJSON());
                                    me.render();
                                }
-                           });
+                           }
+                       );
+                   },
+                   onClickBtnSave: function () {
+                       var persona = {
+                           nuDocumento: this.$('#nuDocumento-'+this.model.cid).val(),
+                           apPersona: this.$('#apPersona-'+this.model.cid).val(),
+                           amPersona: this.$('#amPersona-'+this.model.cid).val(),
+                           noPersona: this.$('#noPersona-'+this.model.cid).val(),
+                           feNacimiento: moment(this.$('#feNacimiento-'+this.model.cid).val(), 'DD/MM/YYYY').toDate().getTime(),
+                           tipoDocumento: {
+                               idTipoDocumento: this.$('#coTipoDocumento-'+this.model.cid).val()
+                           }
+                       }, trabajador = {
+                           persona: persona
+                       };
+                       this.model.save(
+                           {
+                               trabajador: trabajador
+                           }
+                       );
                    }
                }
            );
@@ -136,10 +164,13 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                                collection: this.planillaCollection
                            }
                        ));
-                       this.planillaCollection.fetch();
+                       if (!this.model.isNew()) {
+                           this.planillaCollection.fetch();
+                       }
                    },
                    childEvents: {
                        'goto:list': 'onGotoList',
+                       'goto:edit': 'onGotoEdit',
                        'render': 'onChildRender'
                    },
                    templateHelpers: function () {
@@ -149,6 +180,9 @@ define(['app', 'marionette', 'tpl!templates/config/periodoacademicoformlayout.ht
                    },
                    onGotoList: function (childView) {
                        this.trigger('goto:list');
+                   },
+                   onGotoEdit: function (childView, id) {
+                       this.trigger('goto:edit', id);
                    }
                });
        });

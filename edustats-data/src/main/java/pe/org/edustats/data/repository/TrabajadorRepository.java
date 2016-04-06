@@ -8,6 +8,8 @@ import pe.org.edustats.data.model.Trabajador;
 
 public interface TrabajadorRepository extends JpaRepository<Trabajador, Integer> {
 
-    List<Trabajador> findByPersonaNuDocumentoAndCargoCoCargo (String nuDocumento, String coCargo);
+    List<Trabajador> findByPersonaNuDocumentoAndPersonaTipoDocumentoIdTipoDocumentoAndCargoCoCargo(String nuDocumento, String idTipoDocumento, String coCargo);
+
+    List<Trabajador> findByPersonaIdPersonaAndCargoCoCargo(Integer idPersona, String coCargo);
 
 }

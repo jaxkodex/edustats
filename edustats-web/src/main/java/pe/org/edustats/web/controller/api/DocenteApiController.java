@@ -28,11 +28,12 @@ public class DocenteApiController {
 
     @RequestMapping(value = "/api/docente", method = RequestMethod.GET)
     public ResponseEntity<List<TrabajadorBean>> consulta (@RequestParam(required = false, defaultValue = "") String by,
-                                                          @RequestParam(required = false) String nuDocumento) {
+                                                          @RequestParam(required = false) String nuDocumento,
+                                                          @RequestParam(required = false) String idTipoDocumento) {
         List<TrabajadorBean> trabajadores = new ArrayList<>();
         switch (by) {
             case CONSULTA_POR_NU_DOCUMENTO:
-                trabajadores = docenteService.consultaPorNuDocumento(nuDocumento);
+                trabajadores = docenteService.consultaPorNuDocumento(nuDocumento, idTipoDocumento);
                 break;
         }
         return new ResponseEntity<>(trabajadores, HttpStatus.OK);

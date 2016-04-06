@@ -26,5 +26,5 @@ public interface DocenteService {
      */
     TrabajadorBean update (TrabajadorBean trabajadorBean) throws DataValidationException;
 
-    List<TrabajadorBean> consultaPorNuDocumento (String nuDocumento);
+    List<TrabajadorBean> consultaPorNuDocumento (String nuDocumento, String idTipoDocumento);
 }

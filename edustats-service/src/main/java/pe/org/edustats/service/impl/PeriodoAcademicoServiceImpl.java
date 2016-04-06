@@ -10,14 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pe.org.edustats.data.bean.InstitucionEducativaBean;
 import pe.org.edustats.data.bean.PeriodoAcademicoBean;
+import pe.org.edustats.data.bean.PersonaBean;
 import pe.org.edustats.data.bean.PlanillaBean;
 import pe.org.edustats.data.bean.TrabajadorBean;
 import pe.org.edustats.data.model.InstitucionEducativa;
 import pe.org.edustats.data.model.PeriodoAcademico;
 import pe.org.edustats.data.model.Planilla;
+import pe.org.edustats.data.model.Trabajador;
 import pe.org.edustats.data.repository.InstitucionEducativaRepository;
 import pe.org.edustats.data.repository.PeriodoAcademicoRepository;
 import pe.org.edustats.data.repository.PlanillaRepository;
+import pe.org.edustats.data.repository.TrabajadorRepository;
 import pe.org.edustats.service.DocenteService;
 import pe.org.edustats.service.PeriodoAcademicoService;
 import pe.org.edustats.service.converter.PeriodoAcademicoModelToBeanConverter;
@@ -28,6 +31,7 @@ import pe.org.edustats.service.exception.DataValidationException;
 import pe.org.edustats.service.util.DataValidator;
 import pe.org.edustats.service.util.MessageResolver;
 import pe.org.edustats.service.util.ServiceConstants;
+import pe.org.edustats.service.util.enums.CargoEnum;
 import pe.org.edustats.service.validator.PeriodoAcademicoBeanValidator;
 
 @Service
@@ -40,6 +44,8 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
     private PeriodoAcademicoRepository periodoAcademicoRepository;
     @Autowired
     private PlanillaRepository planillaRepository;
+    @Autowired
+    private TrabajadorRepository trabajadorRepository;
     @Autowired
     private MessageResolver messageResolver;
     @Autowired
@@ -97,7 +103,11 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
 
     @Override
     public void addDocenteAPlanaPeriodo(Integer idPeriodoAcademico, TrabajadorBean trabajadorBean) throws DataValidationException {
-        if (trabajadorBean.getIdTrabajador() == null) {
+        List<Trabajador> trabajadores;
+        String nuDocumento = trabajadorBean.getPersona().getNuDocumento();
+        String idTipoDocumento = trabajadorBean.getPersona().getTipoDocumento().getIdTipoDocumento();
+        trabajadores = trabajadorRepository.findByPersonaNuDocumentoAndPersonaTipoDocumentoIdTipoDocumentoAndCargoCoCargo(nuDocumento, idTipoDocumento, CargoEnum.DOCENTE.getCoCargo());
+        if (trabajadores.isEmpty()) {
             trabajadorBean = docenteService.create(trabajadorBean);
         } else {
             trabajadorBean = docenteService.update(trabajadorBean);

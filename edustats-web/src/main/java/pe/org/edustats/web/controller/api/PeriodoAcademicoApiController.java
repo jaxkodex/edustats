@@ -55,9 +55,15 @@ public class PeriodoAcademicoApiController {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
-    @Secured("ROLE_CONFPA")
-    @RequestMapping(value = "/api/periodoAcademico/{idPeriodoAcademico}/docente")
+    @RequestMapping(value = "/api/periodoAcademico/{idPeriodoAcademico}/docente", method = RequestMethod.GET)
     public ResponseEntity<List<PlanillaBean>> cargarPlanaDocente (@PathVariable Integer idPeriodoAcademico) throws DataValidationException {
+        return new ResponseEntity<>(periodoAcademicoService.cargarPlanilla(idPeriodoAcademico), HttpStatus.OK);
+    }
+
+    @Secured("ROLE_CONFPA")
+    @RequestMapping(value = "/api/periodoAcademico/{idPeriodoAcademico}/docente", method = RequestMethod.POST)
+    public ResponseEntity<List<PlanillaBean>> crear (@PathVariable Integer idPeriodoAcademico, @RequestBody PlanillaBean planillaBean) throws DataValidationException {
+        periodoAcademicoService.addDocenteAPlanaPeriodo(idPeriodoAcademico, planillaBean.getTrabajador());
         return new ResponseEntity<>(periodoAcademicoService.cargarPlanilla(idPeriodoAcademico), HttpStatus.OK);
     }
 
