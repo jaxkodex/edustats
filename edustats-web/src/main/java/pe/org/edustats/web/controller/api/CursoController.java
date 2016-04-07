@@ -18,7 +18,7 @@ public class CursoController {
     @Autowired
     private CursoService cursoService;
 
-    @RequestMapping(value = "/api/cursos", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/curso", method = RequestMethod.GET)
     public List<CursoBean> consultar () {
         return cursoService.listarCursos();
     }

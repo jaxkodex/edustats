@@ -11,7 +11,6 @@ public class AsignacionDocenteBean implements Serializable {    private Integer 
     private PlanillaBean planilla;
     private AulaBean aula;
     private CursoBean curso;
-    private PeriodoAcademicoBean periodoAcademico;
 
     public AulaBean getAula() {
         return aula;
@@ -43,14 +42,6 @@ public class AsignacionDocenteBean implements Serializable {    private Integer 
 
     public void setIdAsignacionDocente(Integer idAsignacionDocente) {
         this.idAsignacionDocente = idAsignacionDocente;
-    }
-
-    public PeriodoAcademicoBean getPeriodoAcademico() {
-        return periodoAcademico;
-    }
-
-    public void setPeriodoAcademico(PeriodoAcademicoBean periodoAcademico) {
-        this.periodoAcademico = periodoAcademico;
     }
 
     public PlanillaBean getPlanilla() {

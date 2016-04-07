@@ -1,6 +1,8 @@
 package pe.org.edustats.data.bean;
 
-public class InstitucionEducativaBean {
+import java.io.Serializable;
+
+public class InstitucionEducativaBean implements Serializable {
   private Integer idInstitucionEducativa;
   private Integer nuInstitucionEducativa;
   private String noInstitucionEducativa;

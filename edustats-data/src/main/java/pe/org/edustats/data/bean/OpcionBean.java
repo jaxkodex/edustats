@@ -1,6 +1,8 @@
 package pe.org.edustats.data.bean;
 
-public class OpcionBean {
+import java.io.Serializable;
+
+public class OpcionBean implements Serializable {
   private Integer idOpcion;
   private String coOpcion;
   private String deOpcion;

@@ -44,10 +44,8 @@ create table asignacion_docente (
   id_planilla int not null,
   id_aula int not null,
   id_curso int not null,
-  id_periodo_academico int not null,
   constraint asignacion_docente_pk primary key (id_asignacion_docente),
   constraint asignacion_docente_planilla_fk foreign key (id_planilla) references planilla (id_planilla),
   constraint asignacion_docente_aula_fk foreign key (id_aula) references aula (id_aula),
-  constraint asignacion_docente_curso_fk foreign key (id_curso) references curso(id_curso),
-  constraint asignacion_periodo_academico_fk foreign key (id_periodo_academico) references periodo_academico (id_periodo_academico)
+  constraint asignacion_docente_curso_fk foreign key (id_curso) references curso(id_curso)
 );

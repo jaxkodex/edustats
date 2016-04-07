@@ -128,7 +128,7 @@ public class PeriodoAcademicoServiceImpl implements PeriodoAcademicoService {
     @Override
     @Transactional
     public List<PlanillaBean> cargarPlanilla(Integer idPeriodoAcademico) {
-        List<Planilla> planilla = planillaRepository.findByIdPeriodoAcademico(idPeriodoAcademico);
+        List<Planilla> planilla = planillaRepository.findByPeriodoAcademicoIdPeriodoAcademico(idPeriodoAcademico);
         return new PlanillaModelToBeanConverter().convertList(planilla);
     }
 }

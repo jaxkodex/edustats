@@ -8,6 +8,6 @@ import pe.org.edustats.data.model.Planilla;
 
 public interface PlanillaRepository extends JpaRepository<Planilla, Integer> {
 
-    List<Planilla> findByIdPeriodoAcademico (Integer idPeriodoAcademico);
+    List<Planilla> findByPeriodoAcademicoIdPeriodoAcademico (Integer idPeriodoAcademico);
 
 }

@@ -24,7 +24,6 @@ public class AsignacionDocente implements Serializable {
     private Planilla planilla;
     private Aula aula;
     private Curso curso;
-    private PeriodoAcademico periodoAcademico;
 
     @ManyToOne
     @JoinColumn(name = "id_aula")
@@ -65,16 +64,6 @@ public class AsignacionDocente implements Serializable {
 
     public void setIdAsignacionDocente(Integer idAsignacionDocente) {
         this.idAsignacionDocente = idAsignacionDocente;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_periodo_academico")
-    public PeriodoAcademico getPeriodoAcademico() {
-        return periodoAcademico;
-    }
-
-    public void setPeriodoAcademico(PeriodoAcademico periodoAcademico) {
-        this.periodoAcademico = periodoAcademico;
     }
 
     @ManyToOne
