@@ -1,6 +1,7 @@
 /* General Styles */
 body {
   background-color: #F5F7FA;
+  /*background-color: #fff;*/
 }
 
 /* Sidebar styles */
@@ -12,7 +13,7 @@ body {
   color: #333;
   font-weight: bold;
   border-left: none;
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 
 .sidebar-nav > .sidebar-brand a:hover {
@@ -37,7 +38,7 @@ body {
 }
 
 .sidebar-nav li.active a {
-  background: #FCFCFC;
+  /*background: #FCFCFC;*/
 }
 
 .sidebar-nav li a:hover {
@@ -57,15 +58,16 @@ li.sidebar-brand a {
   padding-left: 20px;
   /*border-color: #2F87A2;*/
   color: #43C1E8;
-  background: #FFF;
+  /*background: #FFF;*/
 }
 
 .sidebar-nav > li.active ul a {
-  background: #FFF;
+  /*background: #FFF;*/
 }
 
 #sidebar-wrapper {
-  background-color: #fff;
+  /*background-color: #fff;*/
+  background-color: #F5F7FA;
   border-right: 1px solid #cfdbe2;
   margin-left: -251px;
 }
@@ -98,4 +100,19 @@ li.sidebar-brand a {
 
 .in-action-edit .editing {
   display: table-row;
+}
+
+ul.nav-tabs {
+  padding-left: 20px;
+  z-index: 1;
+}
+
+div.tab-content {
+  padding: 15px 55px 20px 55px;
+  background: #fff;
+  margin-left: -35px;
+  margin-right: -35px;
+  border-top: 1px solid #ddd;
+  z-index: -1;
+  margin-top: -1px;
 }

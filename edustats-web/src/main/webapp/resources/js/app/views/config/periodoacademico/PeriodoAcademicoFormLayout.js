@@ -3,25 +3,26 @@
  */
 define(['app', 'marionette',
         'tpl!templates/config/periodoacademico/formlayout.html',
-        'collections/PlanillaCollection',
+        'collections/PlanillaCollection', 'collections/AulaCollection',
         'views/config/periodoacademico/PeriodoAcademicoFormView',
         'views/config/periodoacademico/PlanaDocenteView',
         'views/config/periodoacademico/AsignacionDocenteView'
        ],
        function (app, Marionette,
                  periodoAcademicoFormLayout,
-                 PlanillaCollection,
+                 PlanillaCollection, AulaCollection,
                  PeriodoAcademicoFormView, PlanaDocenteView, AsignacionDocenteView) {
            return Marionette.LayoutView.extend(
                {
                    initialize: function () {
-                       this.planillaCollection =
-                           new PlanillaCollection([], {idPeriodoAcademico: this.model.id});
+                       this.planillaCollection = new PlanillaCollection([], {idPeriodoAcademico: this.model.id});
+                       this.aulaCollection = new AulaCollection([]);
                    },
                    template: periodoAcademicoFormLayout,
                    regions: {
                        periodoAcademicoFormRegion: '#periodo-academico-form',
-                       planaDocenteRegion: '#plana-docente'
+                       planaDocenteRegion: '#plana-docente',
+                       asignacionDocenteRegion: '#asignacion-docente'
                    },
                    onBeforeShow: function () {
                        var me = this;
@@ -33,11 +34,21 @@ define(['app', 'marionette',
                                collection: this.planillaCollection
                            }
                        ));
-                       this.showChildView('', new AsignacionDocenteView({
-                           // collection:
+                       this.showChildView('asignacionDocenteRegion', new AsignacionDocenteView({
+                           collection: this.aulaCollection,
+                           cursoCollection: this.options.cursoCollection,
+                           seccionCollection: this.options.seccionCollection,
+                           periodoAcademico: this.model
                        }));
                        if (!this.model.isNew()) {
                            this.planillaCollection.fetch();
+                           this.aulaCollection.fetch(
+                               {
+                                   data: {
+                                       idPeriodoAcademico: this.model.id
+                                   }
+                               }
+                           );
                        }
                    },
                    childEvents: {

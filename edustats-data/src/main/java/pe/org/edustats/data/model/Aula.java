@@ -56,7 +56,7 @@ public class Aula implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "id_seccion")
+    @JoinColumn(name = "co_seccion")
     public Seccion getSeccion() {
         return seccion;
     }

@@ -17,9 +17,9 @@ public class GradoBeanToModelConverter extends AbstractDataConverter<GradoBean, 
         }
         Grado grado = new Grado();
 
-        grado.setIdGrado(grado.getIdGrado());
-        grado.setNuGrado(grado.getNuGrado());
-        grado.setDeGrado(grado.getDeGrado());
+        grado.setIdGrado(gradoBean.getIdGrado());
+        grado.setNuGrado(gradoBean.getNuGrado());
+        grado.setDeGrado(gradoBean.getDeGrado());
 
         grado.setCiclo(new Ciclo());
         grado.getCiclo().setIdCiclo(gradoBean.getCiclo().getIdCiclo());

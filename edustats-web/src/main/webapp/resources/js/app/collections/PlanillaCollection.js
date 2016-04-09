@@ -10,10 +10,10 @@ define(['backbone', 'models/Planilla'], function (Backbone, Planilla) {
             url: function () {
                 return baseUrl + '/api/periodoAcademico/' +this.idPeriodoAcademico+ '/docente'
             },
-            model: Planilla,
-            modelId: function (attrs) {
-                return 'idPeriodoAcademico:'+attrs.idPeriodoAcademico+',idTrabajador:'+attrs.trabajador.idTrabajador;
-            }
+            model: Planilla//,
+            // modelId: function (attrs) {
+            //     return 'idPeriodoAcademico:'+attrs.idPeriodoAcademico+',idTrabajador:'+attrs.trabajador.idTrabajador;
+            // }
         }
     );
 });

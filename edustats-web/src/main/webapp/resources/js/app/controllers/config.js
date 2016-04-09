@@ -5,7 +5,7 @@ define(['app', 'underscore',
         'collections/InstitucionEducativa', 'models/InstitucionEducativa',
         'models/PeriodoAcademico', 'collections/PeriodoAcademicoCollection',
         'models/Trabajador', 'collections/TrabajadorCollection',
-        'collections/CursoCollection'],
+        'collections/CursoCollection', 'collections/SeccionCollection'],
        function (app, _, InstitucionEducativaListView,
                  InstitucionEducativaFormView,
                  PeriodoAcademicoListView,
@@ -15,11 +15,12 @@ define(['app', 'underscore',
                  InstitucionEducativa,
                  PeriodoAcademico, PeriodoAcademicoCollection,
                  Trabajador, TrabajadorCollection,
-                 CursoCollection) {
+                 CursoCollection, SeccionCollection) {
            var institucionEducativaCollection = new InstitucionEducativaCollection([]);
            var periodoAcademicoCollection = new PeriodoAcademicoCollection([]);
            var trabajadorCollection = new TrabajadorCollection([]);
            var cursoCollection = new CursoCollection([]);
+           var seccionCollection = new SeccionCollection([]);
 
            return {
                listInstitucionEducativa: function () {
@@ -28,12 +29,14 @@ define(['app', 'underscore',
                    view = new InstitucionEducativaListView({
                        collection: institucionEducativaCollection
                    });
-                   institucionEducativaCollection.fetch({
-                                                            success: function () {
-                                                                app.rootView.showChildView('main',
-                                                                                           view);
-                                                            }
-                                                        });
+                   institucionEducativaCollection.fetch(
+                       {
+                           success: function () {
+                               app.rootView.showChildView('main',
+                                                          view);
+                           }
+                       }
+                   );
                    view.on('goto:new', function () {
                        me.newInstitucionEducativaForm();
                        Backbone.history.navigate('config/institucioneducativa/new/');
@@ -96,21 +99,23 @@ define(['app', 'underscore',
                    view = new PeriodoAcademicoListView({
                        collection: periodoAcademicoCollection
                    });
-                   periodoAcademicoCollection.fetch({
-                                                        data: {
-                                                            idInstitucionEducativa: app.currentIe.idInstitucionEducativa
-                                                        },
-                                                        success: function () {
-                                                            if (periodoAcademicoCollection.isEmpty()) {
-                                                                me.showPeriodoAcademicoNewFormView();
-                                                                Backbone.history.navigate(
-                                                                    'config/periodoacademico/new/');
-                                                            } else {
-                                                                app.rootView.showChildView('main',
-                                                                                           view);
-                                                            }
-                                                        }
-                                                    });
+                   periodoAcademicoCollection.fetch(
+                       {
+                           data: {
+                               idInstitucionEducativa: app.currentIe.idInstitucionEducativa
+                           },
+                           success: function () {
+                               if (periodoAcademicoCollection.isEmpty()) {
+                                   me.showPeriodoAcademicoNewFormView();
+                                   Backbone.history.navigate(
+                                       'config/periodoacademico/new/');
+                               } else {
+                                   app.rootView.showChildView('main',
+                                                              view);
+                               }
+                           }
+                       }
+                   );
 
                    view.on('goto:edit', function (id) {
                        me.showPeriodoAcademicoEditFormView(id);
@@ -149,7 +154,8 @@ define(['app', 'underscore',
                    }
                    view = new PeriodoAcademicoFormLayout({
                        model: model,
-                       cursoCollection: cursoCollection
+                       cursoCollection: cursoCollection,
+                       seccionCollection: seccionCollection
                    });
                    model.fetch(
                        {
@@ -157,12 +163,19 @@ define(['app', 'underscore',
                                cursoCollection.fetch(
                                    {
                                        success: function () {
-                                           app.rootView.showChildView('main', view);
+                                           seccionCollection.fetch(
+                                               {
+                                                   success: function () {
+                                                       app.rootView.showChildView('main', view);
+                                                   }
+                                               }
+                                           );
                                        }
                                    }
                                );
                            }
-                       });
+                       }
+                   );
 
                    view.on('goto:list', function () {
                        me.showPeriodoAcademicoListView();

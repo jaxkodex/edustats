@@ -4,6 +4,7 @@
 define(['backbone'], function (Backbone) {
     return Backbone.Model.extend(
         {
+            idAttribute: 'idPlanilla',
             defaults: {
                 trabajador: {
                     persona: {}
