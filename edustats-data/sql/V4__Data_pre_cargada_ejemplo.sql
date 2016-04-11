@@ -2,15 +2,14 @@
 insert into tipo_documento (id_tipo_documento, de_corta, de_larga) values ('01', 'L.E / DNI', 'LIBRETA ELECTORAL O DNI');
 
 -- Registro de persona
-
-insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento, nu_documento) values (1, 'Pedro', 'Castillo', 'Izaguirre', '1990-01-25', '01', '11111111');
-insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento, nu_documento) values (2, 'Jesús', 'Alvarado', 'Cotillo', '1990-01-01', '01', '22222222');
+insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento, nu_documento) values (1, 'Jorge', 'Vilca', 'R', '1990-01-25', '01', '11111111');
+insert into persona (id_persona, no_persona, ap_persona, am_persona, fe_nacimiento, id_tipo_documento, nu_documento) values (2, 'Juan', 'Perez', 'C', '1990-01-01', '01', '22222222');
 
 alter sequence persona_id_persona_seq restart with 3;
 
 -- Registro de usuario
-insert into usuario (id_usuario, id_persona, no_cuenta, co_contrasenia) VALUES (1, 1, 'pcastillo', md5('pcastillo'));
-insert into usuario (id_usuario, id_persona, no_cuenta, co_contrasenia) VALUES (2, 2, 'jalvarado', md5('jalvarado'));
+insert into usuario (id_usuario, id_persona, no_cuenta, co_contrasenia) VALUES (1, 1, 'admin', md5('admin'));
+insert into usuario (id_usuario, id_persona, no_cuenta, co_contrasenia) VALUES (2, 2, 'jperez', md5('jperez'));
 
 alter sequence usuario_id_usuario_seq restart with 3;
 
