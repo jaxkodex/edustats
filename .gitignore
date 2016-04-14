@@ -1,6 +1,7 @@
 app.properties
 test.properties
 flyway.properties
+flyway.demo.properties
 target/
 
 *.class
