@@ -69,12 +69,6 @@
     <profiles>
         <profile>
             <id>demo-data</id>
-            <activation>
-                <property>
-                    <name>data</name>
-                    <value>demo</value>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
