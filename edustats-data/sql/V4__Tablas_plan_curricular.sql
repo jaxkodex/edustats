@@ -24,6 +24,7 @@ create table aula (
   id_grado int not null,
   co_seccion varchar(2) not null,
   id_periodo_academico int not null,
+  co_turno char(1) not null,
   constraint aula_pk primary key(id_aula),
   constraint aula_grado_fk foreign key (id_grado) references grado (id_grado),
   constraint aula_seccion_fk foreign key (co_seccion) references seccion (co_seccion),
@@ -32,10 +33,16 @@ create table aula (
 
 create table curso (
   id_curso serial not null,
-  de_curso varchar (25) not null,
+  de_curso varchar (50) not null,
+  constraint curso_pk primary key (id_curso)
+);
+
+create table curso_grado (
+  id_curso int not null,
   id_grado int not null,
-  constraint curso_pk primary key (id_curso),
-  constraint curso_grado_fk foreign key (id_grado) references grado (id_grado)
+  constraint curso_grado_pk primary key (id_curso, id_grado),
+  constraint curso_grado_grado_id_grado_fk foreign key (id_grado) references grado (id_grado),
+  constraint curso_grado_curso_id_curso_fk foreign key (id_curso) references curso (id_curso)
 );
 
 create table asignacion_docente (
@@ -48,4 +55,13 @@ create table asignacion_docente (
   constraint asignacion_docente_planilla_fk foreign key (id_planilla) references planilla (id_planilla),
   constraint asignacion_docente_aula_fk foreign key (id_aula) references aula (id_aula),
   constraint asignacion_docente_curso_fk foreign key (id_curso) references curso(id_curso)
+);
+
+create table criterio_evaluacion (
+  id_criterio_evaluacion serial,
+  de_criterio_evaluacion varchar(100),
+  id_curso integer not null,
+  id_periodo_academico integer not null,
+  constraint criterio_evaluacion_pk primary key (id_criterio_evaluacion),
+  constraint criterio_evaluacion_curso_fk foreign key (id_curso) references curso (id_curso)
 );
