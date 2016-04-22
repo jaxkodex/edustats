@@ -1,6 +1,7 @@
 package pe.org.edustats.data.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -20,7 +23,6 @@ import javax.persistence.Table;
 public class Curso implements Serializable {
     private Integer idCurso;
     private String deCurso;
-    private Grado grado;
 
     @Column(name = "de_curso")
     public String getDeCurso() {
@@ -29,16 +31,6 @@ public class Curso implements Serializable {
 
     public void setDeCurso(String deCurso) {
         this.deCurso = deCurso;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "id_grado")
-    public Grado getGrado() {
-        return grado;
-    }
-
-    public void setGrado(Grado grado) {
-        this.grado = grado;
     }
 
     @Id

@@ -38,6 +38,7 @@ define(['app', 'marionette',
                            collection: this.aulaCollection,
                            cursoCollection: this.options.cursoCollection,
                            seccionCollection: this.options.seccionCollection,
+                           gradoCollection: this.options.gradoCollection,
                            periodoAcademico: this.model
                        }));
                        if (!this.model.isNew()) {

@@ -18,7 +18,6 @@ public class CursoModelToBeanConverter extends AbstractDataConverter<Curso, Curs
 
         cursoBean.setIdCurso(curso.getIdCurso());
         cursoBean.setDeCurso(curso.getDeCurso());
-        cursoBean.setGrado(gradoModelToBeanConverter.convert(curso.getGrado()));
 
         return cursoBean;
     }
