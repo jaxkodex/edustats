@@ -41,7 +41,7 @@ create table hec_calificaciones (
   nu_alumnos_nivel_satisfaccion_11 numeric not null,
   nu_alumnos_nivel_satisfaccion_14 numeric not null,
   nu_alumnos_nivel_satisfaccion_17 numeric not null,
-  constraint hec_calificaciones_pk primary key (id_dim_criterio_evaluacion, id_dim_curso, id_dim_grado, id_dim_periodo_calificacion, id_dim_seccion),
+  constraint hec_calificaciones_pk primary key (id_dim_curso, id_dim_grado, id_dim_periodo_calificacion, id_dim_seccion),
   constraint hec_calificaciones_dim_seccion_fk foreign key (id_dim_seccion) references dim_seccion (id_dim_seccion),
   constraint hec_calificaciones_dim_grado_fk foreign key (id_dim_seccion) references dim_grado (id_dim_grado),
   constraint hec_calificaciones_dim_curso_fk foreign key (id_dim_curso) references dim_curso (id_dim_curso),
@@ -81,4 +81,6 @@ left join
        and p.id_grado = k.id_grado and p.co_seccion = k.co_seccion and p.id_curso = k.id_curso
 group by k.id_periodo_calificacion, k.id_grado, k.co_seccion, k.id_curso, k.va_nota_promedio_curso_grado
 order by id_periodo_calificacion, id_grado, co_seccion, id_curso;
+
+
  */
