@@ -1,12 +1,13 @@
-define(['app', 'underscore',
+define(['app', 'underscore', 'jquery',
         'views/InstitucionEducativaListView', 'views/InstitucionEducativaFormView',
         'views/config/PeriodoAcademicoListView', 'views/config/periodoacademico/PeriodoAcademicoFormLayout',
         'views/config/DocenteFormView',
         'collections/InstitucionEducativa', 'models/InstitucionEducativa',
         'models/PeriodoAcademico', 'collections/PeriodoAcademicoCollection',
         'models/Trabajador', 'collections/TrabajadorCollection',
-        'collections/CursoCollection', 'collections/SeccionCollection'],
-       function (app, _, InstitucionEducativaListView,
+        'collections/CursoCollection', 'collections/SeccionCollection',
+        'collections/GradoCollection'],
+       function (app, _, $, InstitucionEducativaListView,
                  InstitucionEducativaFormView,
                  PeriodoAcademicoListView,
                  PeriodoAcademicoFormLayout,
@@ -15,12 +16,13 @@ define(['app', 'underscore',
                  InstitucionEducativa,
                  PeriodoAcademico, PeriodoAcademicoCollection,
                  Trabajador, TrabajadorCollection,
-                 CursoCollection, SeccionCollection) {
+                 CursoCollection, SeccionCollection, GradoCollection) {
            var institucionEducativaCollection = new InstitucionEducativaCollection([]);
            var periodoAcademicoCollection = new PeriodoAcademicoCollection([]);
            var trabajadorCollection = new TrabajadorCollection([]);
            var cursoCollection = new CursoCollection([]);
            var seccionCollection = new SeccionCollection([]);
+           var gradoCollection = new GradoCollection();
 
            return {
                listInstitucionEducativa: function () {
@@ -155,27 +157,13 @@ define(['app', 'underscore',
                    view = new PeriodoAcademicoFormLayout({
                        model: model,
                        cursoCollection: cursoCollection,
-                       seccionCollection: seccionCollection
+                       seccionCollection: seccionCollection,
+                       gradoCollection: gradoCollection
                    });
-                   model.fetch(
-                       {
-                           success: function () {
-                               cursoCollection.fetch(
-                                   {
-                                       success: function () {
-                                           seccionCollection.fetch(
-                                               {
-                                                   success: function () {
-                                                       app.rootView.showChildView('main', view);
-                                                   }
-                                               }
-                                           );
-                                       }
-                                   }
-                               );
-                           }
-                       }
-                   );
+                   var complete = _.invoke([model, cursoCollection, seccionCollection, gradoCollection], 'fetch');
+                   $.when.apply($, complete).done(function () {
+                       app.rootView.showChildView('main', view);
+                   });
 
                    view.on('goto:list', function () {
                        me.showPeriodoAcademicoListView();

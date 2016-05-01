@@ -23,14 +23,14 @@
     "loggers": {
       "logger": {
         "name": "EventLogger",
-        "level": "trace",
+        "level": "error",
         "additivity": "false",
         "AppenderRef": {
           "ref": "Routing"
         }
       },
       "root": {
-        "level": "trace",
+        "level": "error",
         "AppenderRef": {
           "ref": "STDOUT"
         }

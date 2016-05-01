@@ -19,13 +19,11 @@ define(['marionette', 'tpl!templates/config/periodoacademico/asignaciondocente.h
                {
                    initialize: function () {
                        var me = this;
-                       this.gradoCollection = new GradoCollection([]);
+                       this.gradoCollection = this.options.gradoCollection;
                        this.cicloCollection = new CicloCollection([]);
 
-                       this.options.cursoCollection.each(function (curso) {
-                           var grado = curso.get('grado');
-                           me.gradoCollection.add(grado);
-                           me.cicloCollection.add(grado.ciclo);
+                       this.options.gradoCollection.each(function (grado) {
+                           me.cicloCollection.add(grado.get('ciclo'));
                        });
 
                        this.form = {
