@@ -1,10 +1,10 @@
 ﻿insert into plantilla_monitoreo (id_plantilla_monitoreo) values (1);
 
-insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion) values (1, 1, 'Estrategias metodológicas empleadas por el docente (Datos a ser registrados mediante la OBSERVACIÓN)');
-insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion) values (2, 1, 'Uso de materiales y recursos didácticos por el docente (Registrar estos datos a partir de la OBSERVACION)');
-insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion) values (3, 1, 'Gestión del tiempo para los aprendizajes →Registrar estos datos a partir de la OBSERVACION ');
-insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion) values (4, 1, 'Clima de aula→ Registrar estos datos a partir de la OBSERVACION');
-insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion) values (5, 1, 'Planificación→ Datos a ser registrados CONSULTANDO al docente');
+insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion, va_puntaje_minimo) values (1, 1, 'Estrategias metodológicas empleadas por el docente (Datos a ser registrados mediante la OBSERVACIÓN)', 8);
+insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion, va_puntaje_minimo) values (2, 1, 'Uso de materiales y recursos didácticos por el docente (Registrar estos datos a partir de la OBSERVACION)', 16);
+insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion, va_puntaje_minimo) values (3, 1, 'Gestión del tiempo para los aprendizajes →Registrar estos datos a partir de la OBSERVACION ', 8);
+insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion, va_puntaje_minimo) values (4, 1, 'Clima de aula→ Registrar estos datos a partir de la OBSERVACION', 8);
+insert into seccion_plantilla_monitoreo (id_seccion_plantilla_monitoreo, id_plantilla_monitoreo, de_seccion, va_puntaje_minimo) values (5, 1, 'Planificación→ Datos a ser registrados CONSULTANDO al docente', 8);
 
 /*<<<<<<< HEAD
 insert into detalle_plantilla_monitoreo (id_detalle_plantilla_monitoreo, id_seccion_plantilla_monitoreo, de_pregunta, in_respuesta_corta, in_opciones, va_puntaje) values(1, 1, 'Al iniciar la sesión el o la docente motiva y genera el interés y la atención de los estudiantes?', FALSE, FALSE, 3);

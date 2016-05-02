@@ -7,6 +7,7 @@ create table seccion_plantilla_monitoreo (
   id_seccion_plantilla_monitoreo serial,
   id_plantilla_monitoreo integer not null,
   de_seccion varchar (200) not null,
+  va_puntaje_minimo numeric not null,
   constraint seccion_plantilla_monitoreo_pk primary key (id_seccion_plantilla_monitoreo),
   constraint seccion_plantilla_monitoreo_plantilla_monitoreo_fk foreign key (id_plantilla_monitoreo) references plantilla_monitoreo (id_plantilla_monitoreo)
 );
