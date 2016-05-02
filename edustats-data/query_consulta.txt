@@ -1,0 +1,11 @@
+select m.id_monitoreo, spm.id_seccion_plantilla_monitoreo, 
+sum(va_respuesta)
+from respuesta_monitoreo rm
+left join monitoreo m on m.id_monitoreo = rm.id_monitoreo
+left join detalle_plantilla_monitoreo dpm on dpm.id_detalle_plantilla_monitoreo = rm.id_detalle_plantilla_monitoreo
+left join seccion_plantilla_monitoreo spm on spm.id_seccion_plantilla_monitoreo = dpm.id_seccion_plantilla_monitoreo
+left join asignacion_docente ad on ad.id_asignacion_docente = m.id_asignacion_docente
+left join aula a on a.id_aula = ad.id_aula
+left join periodo_calificacion pc on pc.id_periodo_calificacion = a.id_periodo_academico
+group by m.id_monitoreo, spm.id_seccion_plantilla_monitoreo
+order by m.id_monitoreo, spm.id_seccion_plantilla_monitoreo
