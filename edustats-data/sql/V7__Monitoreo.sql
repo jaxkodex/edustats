@@ -28,11 +28,13 @@ create table monitoreo (
   id_plantilla_monitoreo integer not null,
   id_trabajador integer not null,
   id_asignacion_docente integer not null,
+  id_perido_calificacion integer not null,
   de_compromiso text,
   constraint monitoreo_pk primary key (id_monitoreo),
   constraint monitoreo_trabajador_fk foreign key (id_trabajador) references trabajador (id_trabajador),
   constraint monitoreo_asignacion_docente_fk foreign key (id_asignacion_docente) references asignacion_docente (id_asignacion_docente),
-  constraint monitoreo_plantilla_monitoreo_fk foreign key (id_plantilla_monitoreo) references plantilla_monitoreo (id_plantilla_monitoreo)
+  constraint monitoreo_plantilla_monitoreo_fk foreign key (id_plantilla_monitoreo) references plantilla_monitoreo (id_plantilla_monitoreo),
+  constraint monitoreo_periodo_calificacion_fk foreign key (id_perido_calificacion) references periodo_calificacion (id_periodo_calificacion)
 );
 
 create table respuesta_monitoreo (
