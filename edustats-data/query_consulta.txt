@@ -1,11 +1,24 @@
-select m.id_monitoreo, spm.id_seccion_plantilla_monitoreo, 
-sum(va_respuesta)
+select q.id_seccion_plantilla_monitoreo, avg(puntaje) va_puntaje_promedio,
+  sum(case when puntaje > spm2.va_puntaje_minimo then 1 else 0 end) nu_docente_cumple_indicador
+from (select m.id_monitoreo, spm.id_seccion_plantilla_monitoreo,
+  sum(va_respuesta) puntaje
 from respuesta_monitoreo rm
-left join monitoreo m on m.id_monitoreo = rm.id_monitoreo
-left join detalle_plantilla_monitoreo dpm on dpm.id_detalle_plantilla_monitoreo = rm.id_detalle_plantilla_monitoreo
-left join seccion_plantilla_monitoreo spm on spm.id_seccion_plantilla_monitoreo = dpm.id_seccion_plantilla_monitoreo
-left join asignacion_docente ad on ad.id_asignacion_docente = m.id_asignacion_docente
-left join aula a on a.id_aula = ad.id_aula
-left join periodo_calificacion pc on pc.id_periodo_calificacion = a.id_periodo_academico
-group by m.id_monitoreo, spm.id_seccion_plantilla_monitoreo
-order by m.id_monitoreo, spm.id_seccion_plantilla_monitoreo
+  left join monitoreo m on m.id_monitoreo = rm.id_monitoreo
+  left join detalle_plantilla_monitoreo dpm on dpm.id_detalle_plantilla_monitoreo = rm.id_detalle_plantilla_monitoreo
+  left join seccion_plantilla_monitoreo spm on spm.id_seccion_plantilla_monitoreo = dpm.id_seccion_plantilla_monitoreo
+  left join asignacion_docente ad on ad.id_asignacion_docente = m.id_asignacion_docente
+  left join aula a on a.id_aula = ad.id_aula
+  left join periodo_calificacion pc on pc.id_periodo_calificacion = a.id_periodo_academico
+group by m.id_monitoreo, spm.id_seccion_plantilla_monitoreo) q
+  left join seccion_plantilla_monitoreo spm2 on spm2.id_seccion_plantilla_monitoreo = q.id_seccion_plantilla_monitoreo
+  left join monitoreo m2 on m2.id_monitoreo = q.id_monitoreo
+  left join asignacion_docente ad2 on ad2.id_asignacion_docente = m2.id_asignacion_docente
+  left join aula a2 on a2.id_aula = ad2.id_aula
+
+group by q.id_seccion_plantilla_monitoreo;
+
+select sum(va_puntaje) from detalle_plantilla_monitoreo where id_seccion_plantilla_monitoreo = 4;
+
+select * from monitoreo;
+select * from asignacion_docente;
+select * from periodo_calificacion;
