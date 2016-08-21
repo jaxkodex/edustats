@@ -1,0 +1,42 @@
+select id_periodo_calificacion, id_criterio_evaluacion, id_grado, co_seccion, id_curso, va_nota_promedio,
+(select sum(case when va_nota > va_nota_promedio then 1 else 0 end)
+from calificacion c
+left join matricula m on m.id_matricula = c.id_matricula
+left join aula a on a.id_aula = m.id_aula
+left join criterio_evaluacion ce on ce.id_criterio_evaluacion = c.id_criterio_evaluacion
+left join curso cu on cu.id_curso = ce.id_curso
+where id_periodo_calificacion = q.id_periodo_calificacion 
+and ce.id_criterio_evaluacion = q.id_criterio_evaluacion 
+and id_grado = q.id_grado 
+and co_seccion = q.co_seccion
+and cu.id_curso = q.id_curso) nu_sobre_promedio,
+(select sum(case when va_nota < va_nota_promedio then 1 else 0 end)
+from calificacion c
+left join matricula m on m.id_matricula = c.id_matricula
+left join aula a on a.id_aula = m.id_aula
+left join criterio_evaluacion ce on ce.id_criterio_evaluacion = c.id_criterio_evaluacion
+left join curso cu on cu.id_curso = ce.id_curso
+where id_periodo_calificacion = q.id_periodo_calificacion 
+and ce.id_criterio_evaluacion = q.id_criterio_evaluacion 
+and id_grado = q.id_grado 
+and co_seccion = q.co_seccion
+and cu.id_curso = q.id_curso) nu_bajo_promedio
+from
+(select id_periodo_calificacion, c.id_criterio_evaluacion, id_grado, co_seccion, ce.id_curso, avg(va_nota) va_nota_promedio
+from calificacion c
+left join matricula m on m.id_matricula = c.id_matricula
+left join aula a on a.id_aula = m.id_aula
+left join criterio_evaluacion ce on ce.id_criterio_evaluacion = c.id_criterio_evaluacion
+left join curso cu on cu.id_curso = ce.id_curso
+group by id_periodo_calificacion, c.id_criterio_evaluacion, id_grado, co_seccion, ce.id_curso) q;
+
+
+
+--- OLD QUERY
+
+select id_periodo_calificacion, c.id_criterio_evaluacion, id_grado, co_seccion, ce.id_curso, va_nota 
+from calificacion c
+left join matricula m on m.id_matricula = c.id_matricula
+left join aula a on a.id_aula = m.id_aula
+left join criterio_evaluacion ce on ce.id_criterio_evaluacion = c.id_criterio_evaluacion
+left join curso cu on cu.id_curso = ce.id_curso
